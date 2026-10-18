@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "title": "Modern interior · Oak & Linen",
+  "source": "public/assets/reference.png",
+  "sourceKind": "synthetic-design-reference",
+  "sourceViewLimit": "One exact authorized synthetic design reference; hidden geometry, dimensions and camera are authored estimates, not recovered measurements.",
+  "authoring": {
+    "sceneBuilder": "build_scene.py",
+    "resourceManifest": ".img2/artifacts/interior/resources.json",
+    "sourceImageSize": [2752, 1536],
+    "sourceSha256": "95eb31d840165964deac849813dc77ad18bad71f1df90770bff1f7b4a5fb666b",
+    "room": {"x": [-3.2, 4.8], "y": [-6.4, 2.7], "height": 3.12},
+    "cameraEstimate": {"position": [-0.8, -5.4, 1.42], "target": [-0.77, 2.1, 1.0], "lensMm": 32, "sensorWidthMm": 36},
+    "probePosition": [-0.1, 0.15, 1.35],
+    "inspectionViews": {
+      "left": {"position": [-2.35, -3.45, 1.45], "target": [0, 1.1, 1.1]},
+      "right": {"position": [2.0, -3.5, 1.45], "target": [-0.3, 1.05, 1.1]},
+      "detail": {"position": [-1.8, 0.6, 1.0], "target": [-1.55, 1.75, 0.45]},
+      "curtain": {"position": [2.6, -0.9, 1.6], "target": [-3.0, -0.9, 1.45]},
+      "reverse": {"position": [4.35, 2.46, 1.35], "target": [-0.45, 1.25, 0.65]}
+    },
+    "pillowProfiles": [
+      {"id":"left","position":[-1.9349,1.91231,0.66494],"size":[0.74256,0.47539,0.20],"rotationDegrees":[65,0,0],"phase":1.3,"outline":[[-0.3712,0.18593],[0.17816,0.24834],[0.37136,-0.18423],[-0.17833,-0.22705]]},
+      {"id":"right-back","position":[0.71371,2.00245,0.64415],"size":[0.64590,0.44678,0.20],"rotationDegrees":[75,0,0],"phase":3.0,"outline":[[-0.22089,0.25018],[0.33524,0.18443],[0.19631,-0.19660],[-0.31066,-0.18249]]},
+      {"id":"right-front","position":[0.28773,1.88237,0.64651],"size":[0.59518,0.40661,0.20],"rotationDegrees":[70,0,0],"phase":4.4,"outline":[[-0.16455,0.18502],[0.3074,0.20132],[0.14493,-0.20529],[-0.28778,-0.20505]]}
+    ]
+  },
+  "runtime": {
+    "background": "/assets/interior/garden-environment.hdr",
+    "backgroundIntensity": 1.2,
+    "glassTransmission": 0.9216,
+    "finishTarget": "sofa",
+    "variants": [
+      {"id": "cream", "label": "Cream linen", "color": "#d2ceca", "roughness": 0.6},
+      {"id": "sand", "label": "Sand linen", "color": "#cbb89b", "roughness": 0.6},
+      {"id": "olive", "label": "Olive linen", "color": "#8f9378", "roughness": 0.6}
+    ]
+  },
+  "portability": "Runtime GLB requires EXR ambient lightmaps and indoor probe; portable GLB embeds static full-light diffuse appearance with KHR_materials_unlit. Packed master retains original PBR and Cycles thin-pane shadow approximation. Native glTF cannot carry dynamic cloth physics or rebounce baked GI.",
+  "assumptions": [
+    "Explicit Oak/Linen reproduction only: builder rejects any other reference hash.",
+    "UV0 scan regions, dye, weave scale, hidden shell, furniture shapes and lamp fill are authored, not measured source BRDFs or dimensions.",
+    "World uses 0.22 lighting and 1.20 camera/transmission branches; not an energy-preserving measured transport model.",
+    "Two-pass bake separates SUN from ambient irradiance; static indirect lighting remains based on open curtains."
+  ]
+}

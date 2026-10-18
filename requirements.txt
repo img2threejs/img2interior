@@ -1,0 +1,4 @@
+# Python >=3.10 for workspace/audit tools; img2_core API 1 comes from the harness.
+# Native production: isolated Python 3.11 and requirements-authoring.txt.
+# Image production/comparison: separate environment, requirements-surfaces.txt.
+# Viewer/validator: workspace-local npm ci using runtime/viewer/package-lock.json.

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "reason": "Explicit Oak/Linen reproduction inputs: CC0 scanned materials and selected editable props, not a universal room fallback. Asset suitability remains subject to visual review.",
+  "models": [
+    {"id": "modern_arm_chair_01", "resolution": "2k", "format": "gltf", "purpose": "Editable upholstered armchair reference and material comparison"},
+    {"id": "coffee_table_round_01", "resolution": "2k", "format": "gltf", "purpose": "Scanned marble top color and corresponding tangent-normal region for an authored table"},
+    {"id": "side_table_01", "resolution": "2k", "format": "gltf", "purpose": "Editable side-table prop and source geometry comparison"},
+    {"id": "potted_plant_02", "resolution": "2k", "format": "gltf", "purpose": "Editable potted plant with complete local glTF texture dependencies"},
+    {"id": "ceramic_vase_03", "resolution": "2k", "format": "gltf", "purpose": "Editable ceramic vessel prop"}
+  ],
+  "textures": [
+    {"id": "oak_wood_planks", "resolution": "2k", "format": "jpg", "purpose": "Floor oak scan with bounded pale-oak authored dye"},
+    {"id": "oak_veneer_03", "resolution": "2k", "format": "jpg", "purpose": "Wood grain for separately dyed walnut and natural-oak furniture"},
+    {"id": "rough_linen", "resolution": "2k", "format": "jpg", "purpose": "Separate sofa linen and curtain dyes retaining scanned yarn variation"},
+    {"id": "painted_plaster_wall", "resolution": "2k", "format": "jpg", "purpose": "Warm plaster with low-frequency scanned variation"},
+    {"id": "brown_leather", "resolution": "2k", "format": "jpg", "purpose": "Tileable charcoal leather grain, roughness and OpenGL normals without borrowed chair UV seams"}
+  ],
+  "hdris": [
+    {"id": "garden_nook", "resolution": "2k", "format": "hdr", "purpose": "Outdoor environment available for source lighting comparison"},
+    {"id": "meadow", "resolution": "2k", "format": "hdr", "purpose": "Outdoor daylight environment for the authored Oak/Linen scene"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "sourceKind": "synthetic-design-reference",
+  "authorization": "The project owner explicitly authorized the Oak / Linen synthetic design reference for interior authoring. This declaration applies only to that showcase image, not arbitrary future inputs.",
+  "scale": {
+    "unit": "m",
+    "basis": "authored-estimate",
+    "note": "Single-image room dimensions, camera, hidden surfaces and textile parameters are authored design estimates, not a measured survey."
+  },
+  "components": ["room-shell", "glazing", "curtains", "sofa", "pillows", "rug", "coffee-table", "armchair", "console", "lights", "artwork", "garden-context"],
+  "unknowns": ["Absolute scale is not recovered from the image", "Unseen surfaces and construction are authored", "Static indirect lighting does not rebounce with curtain or finish changes", "Real-phone performance is not verified"],
+  "interactionRequired": true
+}

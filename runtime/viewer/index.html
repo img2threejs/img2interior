@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore an authored 3D interior, compare its source reference and download the editable scene." />
+    <title>Interior study</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#study">Skip to 3D view</a>
+    <header class="page-header">
+      <a class="site-name" href="/">Interior study</a>
+    </header>
+    <main>
+      <div class="intro">
+        <h1 id="scene-title">An interior in <em>light.</em></h1>
+        <p>From a reference image to editable geometry.<br />Explore the materials, light and viewing angles.</p>
+      </div>
+      <div class="study-layout">
+        <section id="study" class="study" aria-label="Interior viewer" tabindex="-1">
+          <div class="viewer-toolbar">
+            <div class="mode-switch" role="group" aria-label="View content">
+              <button id="mode-3d" type="button" aria-pressed="true" disabled>3D room</button>
+              <button id="mode-source" type="button" aria-pressed="false" disabled>Source image</button>
+            </div>
+            <span id="view-label" class="viewer-kind">3D · authored interior</span>
+          </div>
+          <div id="viewport" class="viewport" aria-busy="true">
+            <div id="canvas-host" class="canvas-host"></div>
+            <figure id="source-panel" class="source-panel" hidden>
+              <img id="source-view" alt="Source reference image" />
+              <figcaption id="source-caption">Source reference image · not a viewer render</figcaption>
+            </figure>
+            <div id="viewer-message" class="viewer-message">
+              <p id="message-title">Opening room</p>
+              <p id="message-detail">Reading model, materials and lightmap atlases.</p>
+              <button id="retry-load" class="retry-button" type="button" hidden>Retry load</button>
+            </div>
+          </div>
+          <div class="load-line" role="status" aria-live="polite" aria-atomic="true">
+            <span id="load-status">Reading scene manifest…</span>
+            <progress id="load-progress" aria-label="Asset load progress"></progress>
+          </div>
+          <div class="viewer-controls">
+            <div id="camera-actions" class="camera-actions" role="group" aria-label="Preset views"></div>
+            <button id="wireframe" type="button" aria-pressed="false" disabled>Wireframe</button>
+            <button id="reset" type="button" disabled>Reset</button>
+          </div>
+          <fieldset id="curtain-controls" class="curtain-controls" aria-describedby="curtain-hint" hidden>
+            <legend>Curtains</legend>
+            <div class="curtain-slider">
+              <div class="curtain-slider-label"><label for="curtain-amount">Coverage</label><output id="curtain-percent" for="curtain-amount">0%</output></div>
+              <input id="curtain-amount" type="range" min="0" max="100" value="0" step="1" disabled />
+            </div>
+            <div class="curtain-actions">
+              <button id="curtain-open" type="button" disabled>Open curtains</button>
+              <button id="curtain-close" type="button" disabled>Close curtains</button>
+              <button id="curtain-wind" type="button" aria-pressed="true" disabled>Gentle breeze</button>
+            </div>
+            <p id="curtain-hint">Grab a point on the fabric and drag along the window. Neighbouring cloth follows; release to settle and gently sway.</p>
+          </fieldset>
+          <div id="finish-controls" class="finish-row" hidden>
+            <div class="finish-heading"><span>Material finish</span><strong id="finish-label">Waiting for materials</strong></div>
+            <div id="finish-swatches" class="finish-swatches" role="group" aria-label="Material finishes"></div>
+          </div>
+          <p id="interaction-hint" class="interaction-hint">Drag to orbit the camera. Scroll or pinch to zoom, right-drag to pan inside the room. Keyboard: Tab into the 3D frame, arrow keys to rotate, + / − to zoom, Home returns to the source view.</p>
+        </section>
+        <aside class="story" aria-label="Source and representation">
+          <h2>From one image<br />to a room.</h2>
+          <figure class="source-figure">
+            <a id="source-link" target="_blank" rel="noopener" aria-label="Open source reference image at full size (new tab)">
+              <img id="source-thumbnail" alt="Source reference image" />
+            </a>
+            <figcaption id="thumbnail-caption">Source reference. Open the image to compare details.</figcaption>
+          </figure>
+          <p>Geometry, PBR materials and lighting are authored separately. Dimensions, camera angle and hidden surfaces are estimates from one image, not measured data.</p>
+          <section class="representation" aria-labelledby="representation-title">
+            <h3 id="representation-title">Baked light, editable geometry</h3>
+            <p id="representation-detail">Direct sunlight and shadows are rendered in real time. Indirect bounce and reflections use the authored static bake; this is not dynamic GI. The camera stays inside the declared room bounds.</p>
+          </section>
+          <section class="downloads" aria-labelledby="download-title">
+            <h3 id="download-title">Take the scene with you</h3>
+            <a id="download-glb" class="download-link" aria-disabled="true" tabindex="-1" download>Download .GLB model</a>
+            <p>Standalone GLB: geometry with embedded baked lighting textures and unlit materials. Reflections differ from the PBR viewer.</p>
+            <a id="download-blend" class="download-link" aria-disabled="true" tabindex="-1" download>Download .blend scene</a>
+            <p>The packed Blender scene keeps PBR materials, geometry and lights for further editing. Downloads preserve the authored scene and original finishes, not the in-viewer changes or cloth simulation.</p>
+          </section>
+          <p id="resource-credit" class="asset-credit" hidden>Powered by <a href="https://polyhaven.com/" target="_blank" rel="noopener">Poly Haven</a> · CC0 assets.</p>
+        </aside>
+      </div>
+    </main>
+    <footer class="page-footer"><span>The source image is a design reference, not measured evidence.</span></footer>
+    <noscript><p class="noscript">JavaScript is required to load this scene's manifest, source image and interactive 3D viewer.</p></noscript>
+    <script type="module" src="/src/interior.js"></script>
+  </body>
+</html>

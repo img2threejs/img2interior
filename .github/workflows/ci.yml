@@ -1,0 +1,37 @@
+name: Interior plugin contract
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: img2threejs/img2
+          ref: 95c722b524118eb6dde74c1f47bff7dd1c18aef3
+          path: .harness-sdk
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install optional image-tool dependencies
+        run: python3 -m pip install -r requirements-surfaces.txt
+      - name: Run behavior regressions
+        env:
+          IMG2_HARNESS_SOURCE: ${{ github.workspace }}/.harness-sdk
+        run: python3 -m unittest discover -s tests -v
+      - name: Build real viewer modules and run behavioral regressions
+        env:
+          VIEWER_ROOT: ${{ github.workspace }}/runtime/viewer
+        run: |
+          npm ci --prefix runtime/viewer
+          npm run build --prefix runtime/viewer
+          node --test tests/viewer/*.test.mjs
+      - name: Install through the official ecosystem in isolated hosts
+        run: python3 scripts/verify_install.py --harness-source .harness-sdk
+      - name: Build deterministic source release
+        run: python3 scripts/package_plugin.py

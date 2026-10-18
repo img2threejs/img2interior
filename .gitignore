@@ -1,0 +1,11 @@
+_img2_local.py
+__pycache__/
+*.py[cod]
+.img2/
+.venv/
+node_modules/
+dist/
+.DS_Store
+.env
+.env.*
+!.env.example

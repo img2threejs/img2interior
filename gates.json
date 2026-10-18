@@ -1,0 +1,5 @@
+[
+  {"id":"interior-materials","command":"python3 \"{plugin_dir}/tools/audit_materials.py\" --workspace \"{workspace}\" --gate","actor":"program","blocking":true,"after":[]},
+  {"id":"interior-delivery","command":"python3 \"{plugin_dir}/tools/audit_delivery.py\" --workspace \"{workspace}\" --gate","actor":"program","blocking":true,"after":["interior-materials"]},
+  {"id":"interior-workflow","command":"python3 \"{plugin_dir}/tools/gate_workflow.py\" --workspace \"{workspace}\"","actor":"program","blocking":true,"after":["interior-delivery"]}
+]

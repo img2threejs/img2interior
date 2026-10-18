@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "title": "Asymmetric studio · transport fixture",
+  "source": "public/assets/reference.png",
+  "sourceKind": "render",
+  "sourceViewLimit": "This authored mechanism fixture does not claim likeness to the supplied image. Example sourceKind assumes a rendered reference: replace it with photo, render, synthetic-design-reference, or floorplan according to the actual caller image. Replace dimensions/camera/builder for actual reconstruction.",
+  "authoring": {
+    "sceneBuilder": "build_scene.py",
+    "sourceImageSize": [960, 720],
+    "room": {"x": [-2.04, 2.04], "y": [-2.24, 2.24], "height": 2.8},
+    "cameraEstimate": {"position": [0.8, -1.9, 1.45], "target": [-0.25, 1.1, 1.0], "lensMm": 23, "sensorWidthMm": 36},
+    "probePosition": [0, -0.4, 1.3],
+    "inspectionViews": {
+      "desk": {"position": [1.4, -0.5, 1.6], "target": [0.3, 1.45, 0.8]},
+      "curtain": {"position": [1.3, -0.8, 1.5], "target": [-1.93, 1.3, 1.3]},
+      "reverse": {"position": [-1.4, 1.2, 1.6], "target": [0.2, -1.1, 1.0]}
+    },
+    "includeCurtain": true
+  },
+  "runtime": {
+    "background": null,
+    "backgroundIntensity": 1,
+    "finishTarget": "seat",
+    "variants": [
+      {"id": "blue", "label": "Blue grey textile", "color": "#a3afb8", "roughness": 0.9},
+      {"id": "ochre", "label": "Ochre textile", "color": "#b89050", "roughness": 0.9}
+    ]
+  },
+  "portability": "Portable contains static baked full diffuse lighting; runtime uses ambient EXR plus shadowed SUN. Probe and bounce are static. Original editable PBR is in the packed master.",
+  "assumptions": ["Metric asymmetric studio authored as a fast physical integration fixture, not a universal template.", "Solid world, no external HDRI or downloaded resources required.", "Deterministic textile PNG is a real map for packed-image repair and export testing, not a realism claim."]
+}

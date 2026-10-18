@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "materials": [
+    {"name":"Interior.CurtainLinen__textiles","requireBaseColorTexture":true,"requireNormalTexture":true,"requireRoughnessTexture":true,"minRoughnessFactor":0.8,"maxMetallicFactor":0,"maxSheenColorFactor":0.2,"texCoord":0},
+    {"name":"Interior.CurtainLinen__details","requireBaseColorTexture":true,"requireNormalTexture":true,"requireRoughnessTexture":true,"minRoughnessFactor":0.8,"maxMetallicFactor":0,"maxSheenColorFactor":0.2,"texCoord":0}
+  ]
+}

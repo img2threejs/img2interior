@@ -1,0 +1,5 @@
+# Install in an isolated Python 3.11 environment, never host/global Python.
+# A Blender 4.3 Python environment with these modules can be used instead.
+# Set IMG2_BLENDER_PYTHON to that interpreter for optional real regression tests.
+bpy==4.3.0
+numpy==1.26.4

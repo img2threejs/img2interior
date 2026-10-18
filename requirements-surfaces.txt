@@ -1,0 +1,3 @@
+# Optional production image preparation/comparison; audit/install remain stdlib.
+numpy>=1.26,<3
+Pillow>=10.4,<13
