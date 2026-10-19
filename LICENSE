@@ -1,83 +1,34 @@
-img2 Interior — Mixed License
-Copyright 2026 hoainho
+img2 Interior — Proprietary License
+Copyright 2026 hoainho. All rights reserved.
+License identifier: LicenseRef-img2-Interior-Proprietary
 
-This notice applies to img2 Interior 0.3.0 and subsequent revisions carrying this
-notice. The repository contains proprietary portions and the Apache-2.0 portions
-expressly identified below. It is not licensed as a whole under an open-source
-license.
+1. Scope
 
-1. Proprietary portions — All rights reserved
+These terms apply to the original portions of img2 Interior that the copyright
+holder is entitled to license on proprietary terms. Separately licensed
+components and previously granted rights are expressly excluded, as identified
+in THIRD_PARTY_NOTICES.md. Their applicable license terms remain controlling;
+this license does not revoke, restrict, or replace them.
 
-Except for the exceptions in sections 2–4, the original plugin source code,
-agent instructions, documentation, tools, and viewer code are proprietary.
-Their license identifier is LicenseRef-img2-Interior-Proprietary.
+2. No permission without written authorization
 
-No permission is granted by this notice to use, reproduce, modify, create
-derivative works of, distribute, sublicense, sell, or otherwise exploit those
-proprietary portions. Such activities require prior written authorization from
-the copyright holder, except where permitted by applicable law or by rights you
-already hold under another applicable license. Repository access, npm access,
-installation, or payment alone does not supply that authorization.
+This notice grants no permission to use, reproduce, modify, create derivative
+works of, distribute, sublicense, sell, or otherwise exploit the proprietary
+portions, except where permitted by applicable law or rights you already hold.
+Any other permission requires a separate written agreement from the copyright
+holder specifying the permitted use. No evaluation, internal-use, commercial,
+modification, or redistribution license is granted automatically.
 
-A separate written agreement must specify any permitted evaluation, internal,
-commercial, modification, or redistribution use. Request authorization from the
-copyright holder through the repository owner at https://github.com/img2threejs.
-No patent or trademark license is granted for the proprietary portions.
+GitHub access, npm access, downloading, installation, or payment alone does not
+supply that authorization. No ownership, patent, or trademark rights are granted
+by this notice. Request authorization through https://github.com/img2threejs.
 
-2. Apache-2.0 exceptions — Blender integration and fixtures
-
-The following repository-relative paths remain licensed under Apache License,
-Version 2.0, rather than the proprietary terms above:
-
-- authoring/ and all its contents
-- recipes/ and all its contents
-- examples/ and all its contents
-- tools/author_scene.py
-- tools/inspect_scene.py
-- tests/test_authoring.py
-- requirements-authoring.txt
-
-The complete Apache-2.0 text and retained copyright notice are provided in
-licenses/Apache-2.0.txt. Preserve that license and applicable notices when
-redistributing these portions. The proprietary terms in section 1 do not limit
-the rights granted for these Apache-2.0 portions.
-
-Apache-2.0 is compatible with GPLv3; it is not compatible with GPLv2-only.
-Blender and its Python API remain subject to their own license. This notice
-does not create an exception to Blender's GPL requirements or certify that an
-arbitrary combined distribution is compliant. Review those requirements before
-distributing Blender binaries, Python API integrations, or combined works.
-
-3. Third-party components and assets
-
-Third-party code, dependencies, assets, and their notices retain their own
-licenses. This notice neither relicenses them nor overrides any rights or
-obligations under those licenses. In particular, the img2 harness, Blender/bpy,
-Three.js, build tools, Python packages, and acquired resources are not made
-proprietary by this notice. Preserve their required licenses and notices in
-any distribution that includes them.
-
-This notice does not claim ownership of a user's reference images, original
-scene data, renders, or artwork merely because the user creates or processes
-them with the plugin. Copied plugin code and third-party material retain their
-applicable terms.
-
-4. Previously licensed material
-
-Earlier revisions, including the 0.2.0 source through commit
-2dceef978d2fd696ea4d1f531049389d3b666eed, were provided under Apache-2.0.
-This notice does not withdraw or restrict rights already granted under that
-license, including rights to earlier material reused in a later revision.
-Consult the license supplied with the applicable revision. The proprietary
-terms do not retroactively convert earlier Apache-2.0 material into exclusively
-proprietary code.
-
-5. Disclaimer for proprietary portions
+3. Disclaimer
 
 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE PROPRIETARY PORTIONS ARE
 PROVIDED "AS IS", WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
 THE COPYRIGHT HOLDER IS NOT LIABLE FOR CLAIMS, DAMAGES, OR OTHER LIABILITY
 ARISING FROM THOSE PORTIONS OR THEIR USE, EXCEPT WHERE APPLICABLE LAW OR A
-SEPARATE WRITTEN AGREEMENT REQUIRES OTHERWISE. THE APACHE-2.0 AND THIRD-PARTY
-PORTIONS HAVE THE DISCLAIMERS AND LIABILITY TERMS OF THEIR RESPECTIVE LICENSES.
+SEPARATE WRITTEN AGREEMENT REQUIRES OTHERWISE. SEPARATELY LICENSED COMPONENTS
+HAVE THE DISCLAIMERS AND LIABILITY TERMS OF THEIR RESPECTIVE LICENSES.

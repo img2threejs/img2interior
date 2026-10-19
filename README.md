@@ -160,10 +160,10 @@ Repository members can use [issues](https://github.com/img2threejs/img2interior/
 
 Report security-sensitive information privately to the repository owner; read the bundled [security policy](SECURITY.md) before executing authored Python or consuming external resources. Paid generation, uploads, public deployment and redistribution need their own authorization.
 
-Contributions to proprietary portions require prior written authorization and agreed terms. Keep generated projects, dependencies and private evidence out of commits; the approved documentation previews are the explicit exception. Describe the behavior changed and checks exercised. Apache-2.0 exceptions retain their own contribution terms; see [maintainer checks](reference/installation.md#maintainer-checks).
+Contributions to proprietary portions require prior written authorization and agreed terms. Keep generated projects, dependencies and private evidence out of commits; the approved documentation previews are the explicit exception. Describe the behavior changed and checks exercised. Separately licensed components retain their own terms; see [component notices](THIRD_PARTY_NOTICES.md) and [maintainer checks](reference/installation.md#maintainer-checks).
 
 ## License
 
-Version **0.3.0** uses a [mixed license](LICENSE), not a blanket open-source license. Original proprietary portions require prior written authorization; GitHub/npm access is not a usage license. The listed Blender authoring, recipe/example and native-tool exceptions retain [Apache-2.0](licenses/Apache-2.0.txt), and earlier Apache-2.0 grants are not revoked. Exact paths and terms are in `LICENSE`.
+**Proprietary — All rights reserved.** The [primary license](LICENSE) grants no automatic permission to use, modify or redistribute the proprietary portions. Obtain written authorization from the copyright holder; GitHub/npm access or payment alone is not a usage license.
 
-The mixed-license notice is not a Blender GPL exception or a legal compliance certification. Dependencies, assets and references retain their own rights. The plugin does not claim ownership of your artwork merely because it processes it; copied code and third-party content retain their terms. Public showcase images grant neither access to the implementation nor rights to unpublished scene assets.
+[Component notices and prior grants](THIRD_PARTY_NOTICES.md) preserve separately licensed material, including existing Apache-2.0 rights. They do not make the whole product open source, and the proprietary license does not override them. Third-party content and your artwork retain their respective rights.

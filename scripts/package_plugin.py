@@ -10,7 +10,7 @@ import zipfile
 
 ROOT_FILES = (
     "plugin.json", "steps.json", "gates.json", "SKILL.md", "README.md", "LICENSE",
-    "licenses/Apache-2.0.txt", "SECURITY.md", "CHANGELOG.md", "VERIFICATION.md",
+    "THIRD_PARTY_NOTICES.md", "licenses/Apache-2.0.txt", "SECURITY.md", "CHANGELOG.md", "VERIFICATION.md",
     "requirements.txt", "requirements-authoring.txt", "requirements-surfaces.txt", ".gitignore",
     "docs/showcase/README.md", "docs/showcase/living-room-comparison.webp", "docs/showcase/living-room-viewer.webp",
 )
