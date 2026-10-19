@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Documentation
+
+- Rewrite the README around project scope, deliverables, installation, usage, contributor checks, support, security, and licensing. Keep detailed production instructions in the reference guides and clarify private-source access and publication status.
+
 ## 0.2.0 — 2026-10-18
 
 ### Full agent-operated production

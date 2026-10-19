@@ -1,75 +1,143 @@
 # img2 Interior
 
-**Version 0.2.0** — installable img2 skill for an image-capable agent to take one image/assignment through an actual editable interior, Three.js viewer and verified delivery. Requires img2 ≥0.4.0 / core API 1.
+**Turn interior reference images into editable Blender scenes and interactive Three.js viewers with a coding agent.**
 
-The agent reads the image/references, authors its camera/spec/Python scene, finds/acquires suitable resources, builds geometry/PBR, renders and repairs, bakes/exports, runs the viewer and independently opens the delivered files. The user does **not** have to provide JSON or approve every routine step. This is an agent-operated workflow/toolkit, not a universal neural image-to-mesh engine or an automatic photorealism guarantee.
+img2 Interior is a plugin for the [img2 harness](https://github.com/img2threejs/img2). It gives an image-capable agent a reconstruction workflow, Blender/Python authoring tools, material and lighting utilities, and a Three.js viewer template. The agent interprets the reference, writes scene-specific code, and iterates on rendered results.
 
-## Install through img2
+This is an agent-guided authoring toolkit, not a pretrained image-to-mesh model. A reference image is the starting point; visual fidelity still depends on scene authoring and review.
 
-The source repository is private; cloning requires access to `img2threejs/img2interior`. Keep the linked checkout in a persistent location.
+[Quickstart](#quickstart) · [Documentation](#documentation) · [Contributing](#contributing) · [License](#license)
+
+## What it does
+
+- **Reconstructs editable rooms:** camera matching, room geometry, furniture, materials, and explicitly documented assumptions about unseen surfaces.
+- **Prepares materials and lighting:** Poly Haven asset acquisition, PBR image processing, lightmap baking, and environment probes.
+- **Builds a web viewer:** bounded camera navigation, material variants, optional rail-mounted curtain interaction, and download controls.
+- **Checks the handoff:** asset validation, dependency inventories, staged reviews, and independent reopening of native and portable files.
+
+## Deliverables
+
+| Output | Intended use | Important distinction |
+| --- | --- | --- |
+| Packed Blender master (`.blend`) | Continue editing geometry, materials, cameras, and lighting | Native authoring file, not a GLB |
+| Runtime GLB + sidecars + Three.js viewer | Explore the scene in a browser | Requires its declared lightmaps, probe, and other dependencies |
+| Portable GLB | Open the scene in another glTF-compatible tool | Static baked appearance; does not carry the viewer's interaction logic |
+
+Generated scenes, downloaded assets, renders, and local environments belong in the project workspace, not in the plugin checkout. They are not bundled with this repository.
+
+## Quickstart
+
+### Requirements
+
+| Component | Requirement |
+| --- | --- |
+| Agent host | Image-capable Claude Code, Codex, or OpenCode, configured through img2 |
+| Harness | img2 ≥0.4.0, core API 1 |
+| CLI and viewer | Git, npm, and Node.js 18, 20, or ≥22 |
+| Workspace and audit tools | Python ≥3.10 |
+| Native authoring | Separate Python 3.11 environment with `bpy==4.3.0` and `numpy==1.26.4` |
+| Image tools | Separate environment using [`requirements-surfaces.txt`](requirements-surfaces.txt) |
+| Viewer inspection | A WebGL-capable browser |
+
+The harness does not install Blender/Python dependencies or build a viewer for you. Follow the [environment setup](reference/production-runbook.md#2-prepare-project-local-environments) before native authoring. Availability of compatible Blender wheels depends on the platform.
+
+### 1. Install the skill
+
+Repository access is currently required: the source is hosted in a **private GitHub repository**. Installation is from a persistent checkout or an extracted source archive; there is no published npm package or catalog entry for this plugin.
+
+The commands below install the harness and register the skill with agent hosts. They change local harness/host configuration. If a compatible harness is already installed, skip the `install` command.
 
 ```sh
 git clone https://github.com/img2threejs/img2interior.git "$HOME/img2interior"
+npx --yes @img2threejs/img2@0.4.0 install --yes
 npx --yes @img2threejs/img2@0.4.0 add --link "$HOME/img2interior" --yes
 npx --yes @img2threejs/img2@0.4.0 doctor --json
 npx --yes @img2threejs/img2@0.4.0 sync --check
-npx --yes @img2threejs/img2@0.4.0 capabilities --from-kind image --to-kind interior-scene-candidate --plugin interior --json
 ```
 
-Install the official harness first if needed; [installation](reference/installation.md) describes source/ZIP installation, sandbox verification and publication status. Claude Code, Codex and OpenCode receive the same `img2-interior` skill through official host registration, not hand-made unrelated skill symlinks. Nothing here installs into your real host account or deploys a website automatically.
+The plugin ID is `interior`; the agent-facing skill is `img2-interior`. Keep the linked checkout in place and restart your agent session after installation. See [installation and removal](reference/installation.md) for maintenance commands and isolated installation verification.
 
-Give the agent the image and request, for example:
+### 2. Start a reconstruction
 
-> Use img2-interior to reconstruct this reference as an editable room and working Three.js scene. Follow the full production/repair/consumer-verification loop; preserve assumptions and deliver native, runtime with sidecars, and static portable outputs.
+Create or open a project directory **outside the plugin checkout**. Start your agent there, attach a reference image, and give it an assignment such as:
 
-The skill starts in the project workspace, reads [SKILL.md](SKILL.md) and routes to the required reference. New images require their own authored scene; Oak/Linen is an explicit source-hash-guarded reproduction, never a fallback.
+> Use img2-interior to reconstruct this reference as an editable room with a working Three.js viewer. Document estimated dimensions and unseen geometry. Compare renders against the reference and repair visible differences. Deliver the packed Blender master, runtime GLB with its dependencies, and a portable GLB; verify that each opens in its intended consumer.
 
-## Complete production workflow
+The agent authors the scene specification and Python builder; you do not need to prepare those files yourself. For the full sequence, including resource acquisition, rendering, baking, browser checks, and export, see the [production runbook](reference/production-runbook.md).
 
-| Operation | What actually runs / required exit |
-|---|---|
-| Read image and references | Byte-pinned intake, actual pixel/browser observations, source kind/authority, normalized anchors, uncertainty. No invented measurements. |
-| Choose camera/composition | Agent-authored spec and physical blockout; actual source-aspect Cycles render, pose/FOV/framing and lateral/contact observations. |
-| Find/acquire resources | Live Poly Haven search/info/files, explicit suitable CC0 selection, verified model dependencies/scans/HDRIs, MD5/size/SHA receipts and API credit. |
-| Build geometry | Explicit workspace `build_scene(context)`, reusable Blender/Python primitives/imports/UV helpers, editable physical shell/furniture/detail/cloth metadata. |
-| Prepare PBR | Real recipe-driven linear dyes/roughness/crops/metric yarn normals, separate material UV0, packed-image refresh and bound-GLB audit. |
-| Render, compare, repair | Actual labeled contact sheets and source/lateral/macro views; preserve rejection, invalidate causally, regenerate and look again. No automatic likeness score. |
-| Calibrate/bake/export | Real asymmetric UV1/EXR/probe fixtures; full-static and SUN-free ambient passes, normal-guided OIDN, current indoor probe and distinct native/runtime/portable products. |
-| Integrate Three.js | Actual pinned Vite/Three template; linear UV1 atlases/PI, one shadowed sun, specular probe, optional background, source/finish/camera/download surfaces. |
-| Verify interaction | Real browser input, bounds, point-bound cloth where authored, reduced motion, failure/retry/context loss/recovery, desktop/narrow and lifecycle evidence. |
-| Handoff | Actual independent packed-master/portable reopening/renders, Khronos and local audits, current eight-stage approvals/three blocking gates, reproducible source/setup/resources/limits. |
+## Workflow
 
-Start with the [executable production runbook](reference/production-runbook.md). Detailed contracts: [scene/builder](reference/scene-contract.md), [resources/PBR](reference/resources.md), [bake/export](reference/bake-export.md), [viewer](reference/viewer-integration.md), [causal review](reference/review.md), [delivery](reference/delivery.md).
+1. **Inspect the reference:** record provenance, visible anchors, camera estimates, and uncertainty.
+2. **Author and refine:** build scene-specific geometry and PBR materials; compare renders and revise the scene.
+3. **Bake and export:** produce lighting data and separate native, runtime, and portable outputs.
+4. **Integrate and verify:** exercise the viewer, reopen exported files, and check the delivery inventory.
 
-## Package layout
+Review gates track stage order and current evidence. They do not measure aesthetic quality or replace visual inspection. Bundled examples are fixtures and source-specific recipes, not substitutes for reconstructing a new image.
 
-- `tools/`: actual project/source/template/snapshot CLI, live acquisition/surfaces, native production/inspection, view comparison, Khronos wrapper and retained workflow/audits/gates.
-- `authoring/`: reusable context, geometry/PBR/UV, two-pass bake/probe/export, native consumers and real calibration/regression fixtures.
-- `resources_lib/`: bounded HTTPS/integrity/local glTF dependencies and actual image operations.
-- `runtime/viewer/`: complete source template and exact npm lockfile; installed into the **authored workspace**.
-- `recipes/oak-linen/`: full source-specific builder/spec/resource/surface recipe, guarded by its supplied image SHA256.
-- `examples/studio/`: complete independent asymmetric-room/one-curtain mechanism fixture, not a substitute for interpreting a new image.
-- `reference/`: per-step inputs, actions, observable exit requirements, actual commands and limits; progressive disclosure under 150 lines/file.
-- `tests/`, `scripts/`, `.github/`: behavior regressions, isolated official installation, deterministic source ZIP and CI definition.
+## Documentation
 
-The archive excludes large images/models/renders, vendor assets, installed dependencies, environments, credentials, local bootstrap/state and historical screenshots. Downloads/authoring/viewer outputs belong outside the installed plugin.
+| Guide | Contents |
+| --- | --- |
+| [Installation](reference/installation.md) | Host integration, linked checkouts, updates, and removal |
+| [Production runbook](reference/production-runbook.md) | Environment setup and end-to-end commands |
+| [Agent instructions](SKILL.md) | Skill entry point and stage-specific guidance |
+| [Scene contract](reference/scene-contract.md) | Scene specification and Python builder interface |
+| [Resources](reference/resources.md) · [Materials](reference/materials.md) | Asset acquisition, provenance, and PBR preparation |
+| [Lighting and export](reference/bake-export.md) | Calibration, baking, probes, and output formats |
+| [Viewer integration](reference/viewer-integration.md) | Three.js configuration and runtime behavior |
+| [Delivery](reference/delivery.md) | Product contracts and independent consumer checks |
+| [Verification record](VERIFICATION.md) · [Changelog](CHANGELOG.md) | Recorded checks, known limits, and changes |
 
-## Environments and verification
+## Contributing
 
-Audit/workspace tools remain stdlib Python ≥3.10 plus the installed img2 core. Native production uses isolated Python 3.11, **bpy 4.3.0 / NumPy 1.26.4** from `requirements-authoring.txt`. Image preparation/comparison uses `requirements-surfaces.txt` separately. Viewer/validator use workspace-local `npm ci` with pinned Three.js 0.180.0 / Vite 6.4.1 / Khronos validator 2.0.0-dev.3.10. See the runbook for setup and actual preflight.
+Bug reports, documentation improvements, and focused fixes are welcome through [GitHub issues](https://github.com/img2threejs/img2interior/issues) and pull requests, subject to repository access.
+
+For a bug report, include the plugin and harness versions, operating system, relevant command, expected result, actual result, and a minimal reproduction. Remove credentials, private images, client assets, and identifying project paths before sharing logs or artifacts.
+
+For a pull request, describe the behavior being changed and the checks you ran. Keep generated scenes, downloaded resources, dependency directories, and local environments out of commits. Add a regression test when fixing a consumer-visible defect; update affected documentation.
+
+### Local checks
+
+Run these commands from the repository root. Set `IMG2_HARNESS_SOURCE` to the absolute path of a compatible [img2 source checkout](https://github.com/img2threejs/img2); the [CI workflow](.github/workflows/ci.yml) records the pinned SDK revision used in automation.
 
 ```sh
-IMG2_HARNESS_SOURCE=/absolute/path/to/img2 python3 -m unittest discover -s tests -v
-# Set IMG2_BLENDER_PYTHON to the compatible executable to include real native regressions.
-VIEWER_ROOT=/absolute/path/to/authored-workspace node --test tests/viewer/*.test.mjs
-python3 scripts/verify_install.py --harness-source /absolute/path/to/img2
+export IMG2_HARNESS_SOURCE=/absolute/path/to/img2
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-surfaces.txt
+python -m unittest discover -s tests -v
+npm ci --prefix runtime/viewer
+npm run build --prefix runtime/viewer
+VIEWER_ROOT="$PWD/runtime/viewer" node --test tests/viewer/*.test.mjs
+python scripts/verify_install.py --harness-source "$IMG2_HARNESS_SOURCE"
+```
+
+Native regression tests additionally require the separate authoring environment. Set `IMG2_BLENDER_PYTHON` to its Python executable before running the Python suite. Missing optional environments produce skips; they are not passing native checks. Tests and builds do not replace a changed-path rendering or browser check.
+
+To build an installable source archive:
+
+```sh
 python3 scripts/package_plugin.py
 ```
 
-Install optional image dependencies before the Python suite; missing image/native environments are reported as skips, not proof. Compile/tests do not replace a changed-path runtime smoke. [VERIFICATION.md](VERIFICATION.md) records exercised release checks, repair rounds and limits, not imagined CI/phone/hosting success.
+The ZIP and `SHA256SUMS` are written to `dist/`. Building an archive does not publish a release, an npm package, or a catalog entry.
 
-## Honest boundaries
+## Limitations
 
-One image does not establish hidden geometry, scale, BRDF or collision truth. Agent-authored estimates remain explicit. Runtime indirect lighting/probe and portable appearance are static; the shipped cloth is a position-based horizontal-rail approximation with an identity-root/owned-geometry contract, not arbitrary rig support or calibrated FEM. Heavy source-specific research output is not a mobile budget baseline.
+- **Single-view ambiguity:** dimensions, hidden geometry, and material properties are estimates unless supported by additional evidence.
+- **No fidelity guarantee:** machine checks validate declared contracts, not likeness, physical accuracy, or photorealism.
+- **Static lighting:** baked indirect lighting and probes do not provide fully dynamic global illumination. Portable exports preserve a static appearance, not the native material setup.
+- **Scoped interaction:** optional curtain simulation uses a position-based rail approximation; it is not a general cloth solver or arbitrary-rig system.
+- **Project-specific budgets:** output size and performance depend on the scene. Example reconstructions do not establish mobile-device performance or universal platform support.
 
-Paid generation, private uploads, publishing/deployment, purchases and a real-account install require separate authority. Review [SECURITY.md](SECURITY.md) before executing trusted authored Python or installing dependencies. Source/local ZIP readiness is not catalog publication.
+## Support and security
+
+Use [issues](https://github.com/img2threejs/img2interior/issues) for usage questions and reproducible bugs. For security-sensitive reports, contact the repository owner privately rather than posting secrets or private artifacts in an issue. Read [SECURITY.md](SECURITY.md) for trust boundaries before running authored Python or processing external assets.
+
+Paid generation, private uploads, purchases, deployment, and redistribution of reference images require separate authorization. Running the reconstruction workflow does not grant those permissions.
+
+## License
+
+The code in this repository is licensed under [Apache License 2.0](LICENSE).
+
+Third-party assets and reference images remain subject to their own licenses and permissions. Poly Haven's CC0 asset license is separate from its API terms and attribution requirements; see the [resource guide](reference/resources.md).
