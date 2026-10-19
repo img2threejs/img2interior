@@ -5,6 +5,7 @@
 ### Documentation
 
 - Rewrite the README around project scope, deliverables, installation, usage, contributor checks, support, security, and licensing. Keep detailed production instructions in the reference guides and clarify private-source access and publication status.
+- Document private GitHub hosting with planned npm installer distribution, distinguish installer-only and payload access models, and add the official wrapper release checklist with tarball review, trusted publishing, and private-source provenance limits.
 
 ## 0.2.0 — 2026-10-18
 
