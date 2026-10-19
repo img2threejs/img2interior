@@ -1,0 +1,16 @@
+_img2_local.py
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+dist/
+.venv/
+.venv-blender/
+.venv-images/
+.img2/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store

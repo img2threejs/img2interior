@@ -44,4 +44,4 @@ Downloaded asset bytes may change upstream; current verified acquisition receipt
 
 Camera, metre scale, hidden surfaces, reflectance, dyes and scan footprints remain authored estimates. The source-specific artwork crop is an explicitly labeled artwork texture, not permission to turn furniture/room structure into photo cards. Native thin-pane shadows and runtime two-interface sun transmission are approximations; open-curtain GI/probe and portable appearance remain static.
 
-Historical showcase evidence is summarized in [lessons](showcase-lessons.md); current release smoke evidence is in [VERIFICATION.md](../VERIFICATION.md). Do not report a small low-sample mechanism smoke as a fresh full-quality photorealism or real-phone acceptance run.
+Historical showcase evidence is summarized in [lessons](showcase-lessons.md). Keep current smoke evidence with the authored project's delivery. Do not report a small low-sample mechanism smoke as a fresh full-quality photorealism or real-phone acceptance run.

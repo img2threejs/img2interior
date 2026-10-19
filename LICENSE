@@ -1,34 +1,95 @@
-img2 Interior — Proprietary License
-Copyright 2026 hoainho. All rights reserved.
-License identifier: LicenseRef-img2-Interior-Proprietary
+img2 Interior — Free Use, Restricted Commercialization License 1.0
+Copyright 2026 hoainho.
+License identifier: LicenseRef-img2-Interior-Free-Use-Restricted-Commercialization-1.0
 
-1. Scope
+1. Scope and preserved rights
 
-These terms apply to the original portions of img2 Interior that the copyright
-holder is entitled to license on proprietary terms. Separately licensed
+These terms apply only to the original portions of img2 Interior that the
+copyright holder is entitled to license under these terms (the "Software"),
+including covered code, skills, scripts and documentation. Separately licensed
 components and previously granted rights are expressly excluded, as identified
 in THIRD_PARTY_NOTICES.md. Their applicable license terms remain controlling;
 this license does not revoke, restrict, or replace them.
 
-2. No permission without written authorization
+This is a source-available license with commercialization restrictions, not an
+OSI-approved open-source license.
 
-This notice grants no permission to use, reproduce, modify, create derivative
-works of, distribute, sublicense, sell, or otherwise exploit the proprietary
-portions, except where permitted by applicable law or rights you already hold.
-Any other permission requires a separate written agreement from the copyright
-holder specifying the permitted use. No evaluation, internal-use, commercial,
-modification, or redistribution license is granted automatically.
+2. Free use and modification
 
-GitHub access, npm access, downloading, installation, or payment alone does not
-supply that authorization. No ownership, patent, or trademark rights are granted
-by this notice. Request authorization through https://github.com/img2threejs.
+Subject to these terms, the copyright holder grants you a worldwide,
+non-exclusive, royalty-free license to use, copy and modify the Software for
+personal, educational, research, internal business and commercial project work.
+No separate permission or license fee is required for those uses. You may
+charge for your own design, authoring or consulting work and resulting outputs,
+including work performed for clients, subject to sections 3 and 4.
 
-3. Disclaimer
+You may redistribute the Software, unchanged or modified, free of charge for
+noncommercial sharing, provided you include this license,
+THIRD_PARTY_NOTICES.md and all applicable copyright and component-license
+notices, identify your modifications, and apply these terms to covered portions.
+Recipients receive the same permissions directly from the copyright holder.
+You may not relicense covered portions to remove these restrictions.
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE PROPRIETARY PORTIONS ARE
-PROVIDED "AS IS", WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+3. Commercialization of the Software requires permission
+
+Without the copyright holder's prior written permission, you may not, directly
+or through another party:
+
+- Sell, rent, license for a fee, or otherwise charge for access to or
+  distribution of the Software or a modified or rebranded version.
+- Bundle, embed or redistribute the Software as part of a commercial software
+  product, plugin, skill pack, template pack or other paid offering, except for
+  the output delivery expressly permitted by section 4.
+- Offer a paid hosted, API, SaaS or managed service that gives customers access
+  to the Software's authoring or generation workflow, including access bundled
+  with another paid service.
+
+Making modifications, changing the name, retaining attribution, or disclosing
+source code does not waive these restrictions. Using the Software yourself or
+within your organization to produce client deliverables is permitted; selling
+customers access to the Software or its workflow is not.
+
+Request commercial permission through https://github.com/img2threejs. Repository
+or package access, installation, a platform subscription, or payment to another
+party alone does not constitute that permission. Any separate written
+agreement controls only to the extent of the rights it expressly grants.
+
+4. Outputs and client delivery
+
+This license does not claim ownership of your inputs or original outputs,
+including scene data, models, renders, images and artwork. You may use, sell
+and deliver them commercially without a separate Software license fee.
+
+You may also copy, modify and distribute the Software's viewer/runtime code
+solely as part of a deliverable that displays or interacts with those outputs,
+including paid client deliverables. Include this license and applicable
+component notices for copied code. This exception does not permit selling a
+standalone viewer toolkit, redistributing the authoring tools as a commercial
+product, or providing customers access to the authoring/generation workflow.
+
+Other copied Software remains subject to sections 2 and 3. Third-party code,
+assets and reference images retain their own terms; this output permission
+does not grant rights you do not otherwise hold in those materials.
+
+5. Reserved rights
+
+Rights not expressly granted are reserved. No ownership or trademark rights
+are transferred. You may not imply the copyright holder endorses your version,
+product or service. Rights available under applicable law or separately
+licensed components remain unaffected.
+
+6. Termination
+
+Permissions under this license terminate if you violate its terms. Termination
+does not revoke rights independently available under a component license,
+an earlier grant, a separate agreement or applicable law.
+
+7. Disclaimer
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED
+"AS IS", WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
 THE COPYRIGHT HOLDER IS NOT LIABLE FOR CLAIMS, DAMAGES, OR OTHER LIABILITY
-ARISING FROM THOSE PORTIONS OR THEIR USE, EXCEPT WHERE APPLICABLE LAW OR A
-SEPARATE WRITTEN AGREEMENT REQUIRES OTHERWISE. SEPARATELY LICENSED COMPONENTS
-HAVE THE DISCLAIMERS AND LIABILITY TERMS OF THEIR RESPECTIVE LICENSES.
+ARISING FROM THE SOFTWARE OR ITS USE, EXCEPT WHERE APPLICABLE LAW OR A SEPARATE
+WRITTEN AGREEMENT REQUIRES OTHERWISE. SEPARATELY LICENSED COMPONENTS HAVE THE
+DISCLAIMERS AND LIABILITY TERMS OF THEIR RESPECTIVE LICENSES.

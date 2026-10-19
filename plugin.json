@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "name": "interior",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Agent-operated image/reference analysis, Poly Haven acquisition, Blender/Python authoring and PBR, render/repair, bake/export, Three.js interaction and verified native/runtime/portable delivery.",
   "capabilities": [{"from": "image", "to": "interior-scene-candidate"}],
   "requires": {"harness": ">=0.4.0", "coreApi": 1}

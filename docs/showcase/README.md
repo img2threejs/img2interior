@@ -1,6 +1,6 @@
 # Showcase — Oak / Linen Living Room
 
-These previews are bundled with the skill so authorized package readers can open them locally without GitHub source access. Open this file in a Markdown viewer or ask the agent to open the adjacent WebP images. The landing-page README uses the identical images from the separately authorized [public media repository](https://github.com/img2threejs/img2interior-media).
+These previews are bundled with the skill so anyone with the public package or public source can open them locally. Open this file in a Markdown viewer or ask the agent to open the adjacent WebP images. The landing-page README uses the identical images from the separately hosted [public media repository](https://github.com/img2threejs/img2interior-media). An actual interactive viewer of the same authored scene is hosted at [img2threejs.io/living-room/](https://img2threejs.io/living-room/); the README links to that live demo. The first image below is the **native Blender render** (reference + reconstruction) and the second is an **archived screenshot of the browser viewer** — they are different products, both included for offline review.
 
 ## Reference → editable native scene
 
@@ -12,7 +12,7 @@ These previews are bundled with the skill so authorized package readers can open
 
 ![Archived Three.js screenshot of the authored living room, reference comparison, camera views, wireframe, curtain controls, sofa finishes and model/native download links.](living-room-viewer.webp)
 
-This is a static capture of the actual project, not a public live demo or an interactive image. Visible download controls refer to that project; no Blender/GLB downloads are published with this gallery.
+This is an **archived browser screenshot** of the working Three.js project — not a public live demo and not the native render (the first image above is the native comparison; this one is the browser view). Visible download controls refer to that project; no Blender/GLB downloads are published with this gallery. The live, interactive version of the same viewer lives at [img2threejs.io/living-room/](https://img2threejs.io/living-room/).
 
 ## What this example establishes
 
@@ -28,4 +28,4 @@ The case is intentionally source-specific. Its recipe is guarded by the original
 - The original study is a large research payload, not a lightweight deployment benchmark. Desktop and emulated narrow-viewport captures do not certify physical phones, arbitrary hardware or production networks.
 - Example-specific counts, material settings and acceptance measurements are not universal quality thresholds. Passing structural/export checks does not establish visual fidelity for a new image.
 
-Only two optimized documentation images are bundled here. Full-resolution references, native/GLB assets, textures, private paths and production reports remain outside the package. Plugin access and third-party content retain their respective terms; see the [license](../../LICENSE). Public previews grant no rights to unpublished implementation or scene assets.
+Only two optimized documentation images are bundled here. Full-resolution references, native/GLB assets, textures and production reports remain outside the package; they are not required to read this skill. Third-party content retains its own terms; see the [license](../../LICENSE). Public previews grant no rights to any user's project assets.

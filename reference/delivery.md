@@ -34,6 +34,6 @@ The showcase is heavy research output, not a mobile-performance baseline. Budget
 
 ## Release only the workflow package
 
-This repository distributes the skill, deterministic tools, references and examples; it does not bundle the showcase's large assets, paid-service credentials or upstream private code. Build a deterministic source ZIP with `python3 scripts/package_plugin.py`. Install the extracted directory through official `img2 add --link` and run doctor/sync again.
+This package distributes the skill, deterministic tools, references and examples; it does not bundle the showcase's large assets, paid-service credentials or upstream private code. Maintainers can build a deterministic source ZIP from the repository with `python3 scripts/package_plugin.py`; development scripts and tests are not part of the npm skill payload. Install an extracted source directory through official `img2 add --link` and run doctor/sync again.
 
-The release includes actual `authoring/`, `resources_lib/`, `runtime/viewer/`, guarded `recipes/`, dependency declarations and source examples, excluding dependency installs, renders/caches, credentials and large assets. Current evidence/limits belong in `VERIFICATION.md`; historical showcase observations are not current cold-run acceptance.
+The release includes actual `authoring/`, `resources_lib/`, `runtime/viewer/`, guarded `recipes/`, dependency declarations and source examples, excluding dependency installs, renders/caches, credentials and large assets. Keep current evidence and limits in the authored project's handoff; historical showcase observations are not current cold-run acceptance.

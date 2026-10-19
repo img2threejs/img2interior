@@ -1,0 +1,86 @@
+{
+  "name": "@img2threejs/img2interior",
+  "version": "0.3.1",
+  "description": "Agent-operated image/reference analysis, Poly Haven acquisition, Blender/Python authoring and PBR, render/repair, bake/export, Three.js interaction and verified native/runtime/portable delivery.",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "hoainho"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/img2threejs/img2interior.git"
+  },
+  "bugs": {
+    "url": "https://github.com/img2threejs/img2interior/issues"
+  },
+  "homepage": "https://img2threejs.io/living-room/",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "funding": [
+    {
+      "type": "ko-fi",
+      "url": "https://ko-fi.com/O8A625YLSR"
+    },
+    {
+      "type": "other",
+      "url": "https://img2threejs.io/donate.html"
+    }
+  ],
+  "keywords": [
+    "img2",
+    "img2-interior",
+    "img2threejs",
+    "interior",
+    "blender",
+    "pbr",
+    "three.js",
+    "threejs",
+    "scene",
+    "agent",
+    "skill"
+  ],
+  "engines": {
+    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+  },
+  "files": [
+    "plugin.json",
+    "steps.json",
+    "gates.json",
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "licenses/Apache-2.0.txt",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "requirements.txt",
+    "requirements-authoring.txt",
+    "requirements-surfaces.txt",
+    "package.json",
+    "tools/**",
+    "authoring/**",
+    "resources_lib/**",
+    "runtime/**",
+    "recipes/**",
+    "reference/**",
+    "examples/**",
+    "docs/showcase/**",
+    "!**/_img2_local.py",
+    "!**/__pycache__/**",
+    "!**/*.pyc",
+    "!**/*.pyo",
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/.img2/**",
+    "!**/.venv/**",
+    "!**/.venv-blender/**",
+    "!**/.venv-images/**",
+    "!**/.env",
+    "!**/.env.*",
+    "!**/*.pem",
+    "!**/*.key",
+    "!**/.DS_Store"
+  ]
+}

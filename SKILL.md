@@ -1,15 +1,19 @@
 ---
 name: img2-interior
 description: Builds image-led interiors through Blender/Python, PBR, render-and-repair, bake/export and an interactive Three.js viewer; verifies native/runtime/portable delivery with img2.
-license: Proprietary. See LICENSE and THIRD_PARTY_NOTICES.md.
-version: 0.3.0
+license: LicenseRef-img2-Interior-Free-Use-Restricted-Commercialization-1.0. See LICENSE and THIRD_PARTY_NOTICES.md.
+version: 0.3.1
 ---
 
 # Image → authored interior → working delivery
 
 Accept one supplied room image and one assignment. Continue through analysis, implementation, visual repair, interactive runtime and delivery; do not return only a plan, ask the user to supply JSON, or stop after a Blender file/build. This is a skill for an image-capable coding agent, not a deterministic neural image-to-mesh service.
 
-Set `SKILL_DIR` to this installed directory and work in the user's project, never the plugin checkout. Install through the official img2 harness; see [installation](reference/installation.md). Preserve unrelated user files. No global installs, publishing or paid-service requests by default.
+Set `SKILL_DIR` to this installed directory and work in the user's project, never the plugin checkout. Install through the official img2 harness; see [installation](reference/installation.md). The public npm package is `@img2threejs/img2interior`; the public source lives at `img2threejs/img2interior` on GitHub. Preserve unrelated user files. No global installs, publishing or paid-service requests by default.
+
+## Showcase and support (discoverable reference)
+
+The bundled [showcase gallery](docs/showcase/README.md) is the same authored scene published at the [live demo](https://img2threejs.io/living-room/). It is inspiration for what a finished delivery looks like, not a benchmark for every room. The skill is maintained alongside the parent img2threejs project; supporting the parent via [Ko-fi](https://ko-fi.com/O8A625YLSR), the [donate page](https://img2threejs.io/donate.html), [PayPal](https://www.paypal.com/paypalme/NguyenHoai545) or [Binance Pay](https://app.binance.com/uni-qr/Trcs9shL) helps fund continued work, but is not required to install or use this skill.
 
 ## Start from the actual image
 
