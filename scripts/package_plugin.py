@@ -8,7 +8,12 @@ import re
 import sys
 import zipfile
 
-ROOT_FILES = ("plugin.json", "steps.json", "gates.json", "SKILL.md", "README.md", "LICENSE", "licenses/Apache-2.0.txt", "SECURITY.md", "CHANGELOG.md", "VERIFICATION.md", "requirements.txt", "requirements-authoring.txt", "requirements-surfaces.txt", ".gitignore")
+ROOT_FILES = (
+    "plugin.json", "steps.json", "gates.json", "SKILL.md", "README.md", "LICENSE",
+    "licenses/Apache-2.0.txt", "SECURITY.md", "CHANGELOG.md", "VERIFICATION.md",
+    "requirements.txt", "requirements-authoring.txt", "requirements-surfaces.txt", ".gitignore",
+    "docs/showcase/README.md", "docs/showcase/living-room-comparison.webp", "docs/showcase/living-room-viewer.webp",
+)
 TREES = ("tools", "authoring", "resources_lib", "runtime", "recipes", "reference", "examples", "tests", "scripts", ".github")
 
 
@@ -60,7 +65,7 @@ def package(source, output):
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     checksums = output / "SHA256SUMS"
     checksums.write_text(digest + "  " + archive.name + "\n", encoding="utf-8")
-    return {"archive":str(archive), "sha256":digest, "bytes":archive.stat().st_size, "files":len(files), "format":"installable-source-zip", "excluded":[".git", "_img2_local.py", "__pycache__", ".img2", "credentials", "showcase-assets"]}
+    return {"archive":str(archive), "sha256":digest, "bytes":archive.stat().st_size, "files":len(files), "format":"installable-source-zip", "excluded":[".git", "_img2_local.py", "__pycache__", ".img2", "credentials", "generated-scene-assets"]}
 
 
 def main():

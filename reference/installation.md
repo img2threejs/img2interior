@@ -2,30 +2,30 @@
 
 ## Requirements
 
-- img2 harness/CLI >=0.4.0, Node.js >=18, Git, Python >=3.10.
-- A configured Claude Code, Codex or OpenCode host. Hermes is not supported by this harness.
+- img2 harness/CLI >=0.4.0, core API 1, Node.js 18, 20 or >=22, npm, Git and Python >=3.10. Prefer a supported Node LTS release.
+- A configured, image-capable Claude Code, Codex or OpenCode host with command execution and browser/image inspection. Hermes is not supported by this harness.
 - Production native tools: isolated Python 3.11/bpy 4.3.0/NumPy 1.26.4 (`requirements-authoring.txt`); separate NumPy/Pillow image environment (`requirements-surfaces.txt`). Audit/state tools remain stdlib plus core API 1.
-- Workspace-local pinned npm dependencies and a real WebGL browser for the viewer/validator. The pinned viewer accepts Node 18, 20 or >=22; production preflight checks the actual binary. See [production setup and commands](production-runbook.md); a harness install does not silently install bpy, image packages or a web app.
+- Workspace-local pinned npm dependencies and a real WebGL browser for the viewer/validator. See [production setup and commands](production-runbook.md); a harness install does not silently install bpy, image packages or a web app. Compatible Blender wheels must exist for your platform.
 - Version 0.3.0 uses the repository's [mixed license](../LICENSE): proprietary portions require prior written authorization. GitHub or npm access alone does not grant usage rights; Apache-2.0 exceptions and earlier grants remain effective.
 
 ## Install the private source checkout
 
-Access to `img2threejs/img2interior` is required. Use authenticated HTTPS Git credentials (or an authorized SSH key); never put access tokens in a remote URL. Linking does not make the source public.
+Access to `img2threejs/img2interior` is required. Use authenticated HTTPS Git credentials or an authorized SSH key; never put access tokens in a remote URL. Linking does not make the source public. Keep the checkout in a persistent location outside authored projects.
 
 ```sh
 git clone https://github.com/img2threejs/img2interior.git "$HOME/img2interior"
 npx --yes @img2threejs/img2@0.4.0 install --yes
 npx --yes @img2threejs/img2@0.4.0 add --link "$HOME/img2interior" --yes
-npx --yes @img2threejs/img2@0.4.0 doctor
+npx --yes @img2threejs/img2@0.4.0 doctor --json
 npx --yes @img2threejs/img2@0.4.0 sync --check
 npx --yes @img2threejs/img2@0.4.0 capabilities --from-kind image --to-kind interior-scene-candidate --plugin interior --json
 ```
 
-If the harness already exists, the first command preserves that checkout; it is not an upgrade command. Check its compatibility before adding. Restart the agent session after linking.
+These commands change local harness/host configuration. Skip `install` if a compatible harness already exists; it is not an upgrade command. Do not clone over an existing checkout. Restart the agent session after linking, open the authored project, attach an image and use the [standard prompt](../README.md#copy-and-use-prompt).
 
 `interior` is the manifest/registry ID, `img2-interior` the harness-derived skill name, and `img2interior` this repository's name. The host link points through `$IMG2_HOME/plugins/interior/` to this persistent checkout. Do not move/delete a linked source. `_img2_local.py` in root/tools is generated and ignored, not committed or distributed.
 
-This release supports persistent checkout/archive installation. Source hosting, including a private GitHub repository, does not publish an npm package or register the plugin in the official catalog. Do not run `img2 add interior` until an actual catalog entry exists. An extracted release archive installs with the same `add --link /absolute/extracted/img2interior` command.
+An authorized source archive installs through the same official CLI: extract it into a persistent directory and pass that extracted `img2interior` directory to `add --link`. Use its actual absolute path, not the ZIP path. Source hosting and archives do not create an npm package or catalog entry; do not run `img2 add interior` before a catalog entry exists.
 
 ## Inspect and remove
 
@@ -39,50 +39,51 @@ Local links are live; `update` does not fetch them. Removal unregisters owned li
 
 ## Project boundary
 
-Keep the current directory in the authored project. Resolve `SKILL_DIR` from the linked skill, then call its tools by absolute path. Do not `cd` into the plugin and initialize a room there. All plugin state is in the project's `.img2/state.json`, under `plugins.interior`; receipts are under `.img2/artifacts/interior/`.
+Keep the current directory in the authored project. Resolve `SKILL_DIR` from the linked skill, then call its tools by absolute path. Do not initialize a room inside the plugin. Project state is in `.img2/state.json`, under `plugins.interior`; receipts are under `.img2/artifacts/interior/`.
 
-`interior_project.py start` pins a supplied image; the agent authors its intake/spec/builder and executes the full loop. `install-viewer` and the explicit hash-guarded `use-recipe` copy owned templates into W with preflight collision checks. A new image is never routed to the old room. Keep environment/dependency/build installs local and do not turn the installed plugin into the generated app.
+`interior_project.py start` pins a supplied image; the agent authors intake/spec/builder and executes the full loop. `install-viewer` and the explicit hash-guarded `use-recipe` copy owned templates into the workspace with preflight collision checks. A new image is never routed to the old room. Keep dependency/build installs local; the installed plugin is not the generated app. On resume use the recorded workflow's `next` operation rather than initialize again.
 
-## Isolated installation proof
+## Private npm release checklist
+
+**Chosen distribution model:** private GitHub development plus a **private scoped npm payload** containing the implementation. No npm package metadata, payload release or catalog entry exists yet; source/archive installation remains the available method. A public wrapper that fetches private GitHub source is not the intended consumer flow.
+
+The historical npm Enterprise product [was sunset](https://docs.npmjs.com/configuring-your-registry-settings-as-an-npm-enterprise-user/). For npm registry distribution, obtain a current user/organization plan supporting private packages, then configure package read/write permissions and authentication. A plan purchase is not a usage license, automatic package publication or code encryption. Do not confuse this with a separately configured GitHub Packages registry.
+
+1. **Confirm the real name, registry and access policy.** Select an owned scoped package name and exact version. Keep plugin ID `interior` and skill name `img2-interior`; align package and plugin versions. Do not advertise a copy/paste npm install command until that real version is published and consumer-tested.
+2. **Package the implementation, not a Git-fetch wrapper.** Use a reviewed root `package.json` and explicit file allowlist. Include `plugin.json`, `SKILL.md`, steps/gates, tools, authoring helpers, resource library, viewer/templates, required recipes/examples, references, dependency manifests, README, `docs/showcase/`, root `LICENSE` and `licenses/Apache-2.0.txt`. Include needed scripts/fixtures without generated state. Exclude credentials, generated `_img2_local.py`, environments, `node_modules`, builds, private production reports, full-resolution references and generated scenes.
+3. **Keep access and license metadata correct.** Use `license: "SEE LICENSE IN LICENSE"` and `publishConfig.access: "restricted"` for the scoped private payload. `private: true` prevents npm publication; it is not the switch for a publishable private package. Preserve Apache-2.0 exceptions, earlier grants and third-party notices; review Blender/Python API and combined-distribution obligations with qualified counsel. This documentation is not a GPL compliance certification.
+4. **Review the actual tarball.** Run `npm pack --dry-run`, build the tarball, inspect its complete file list and install that exact artifact in an isolated consumer. The source ZIP packager is a separate format, not proof of an npm package. Reopen the bundled guides/gallery without GitHub access; verify license files, image paths and required runtime dependencies.
+5. **Authorize and perform the first publication separately.** Use explicit restricted access, reviewed bytes, package write permission and the account's required authentication/2FA. Do not publish merely to preview the README. For CI, review current [trusted-publishing support](https://docs.npmjs.com/trusted-publishers/) for the selected registry/account and workflow; never commit credentials or assume an OIDC flow has been configured. Private source repositories do not support npm provenance attestations; keep provenance disabled rather than claim an attestation exists.
+6. **Test authenticated consumer registration after publication.** Use the official `img2 add` provider with the published package's exact `npm:` source. Harness 0.4.0 resolves packages with `npm view` and `npm pack`; verify the intended npm registry/auth configuration in practice. Test without GitHub source credentials, plus doctor, sync, capability resolution, update and removal. Packages outside the default `@img2threejs` scope require explicit source approval. Check an unauthorized npm reader fails without partial registration; do not weaken access or use `--force` to conceal failures.
+7. **Keep versions immutable and update real instructions.** Record the package version/integrity, verify authorized and unauthorized reads, then replace the README's planned status with the tested install command. Use the official harness for registration; `npm install` alone is not host skill registration. A package release does not register an img2 catalog entry.
+
+### README and showcase delivery
+
+npm renders a root README using [GitHub Flavored Markdown](https://docs.npmjs.com/about-package-readme-files/). A GitHub README change does not update a published npm version until a new package release. Relative private-GitHub image URLs do not grant npm readers GitHub access.
+
+The landing page therefore embeds **public HTTPS previews pinned to an immutable commit** in the separately authorized [media repository](https://github.com/img2threejs/img2interior-media). Only optimized previews and captions are public, never implementation, GLBs, textures, full-resolution inputs or private reports. The same image bytes are included in `docs/showcase/` for local viewing; see the [gallery](../docs/showcase/README.md). Test image delivery without GitHub/npm credentials and keep alt text/captions accurate. No signed expiring image URLs, unpublished package URLs, CI badges implying public access, or unverified live-demo links.
+
+Detailed guides ship with the private payload. Their source links may require GitHub access; npm-only consumers should ask their agent to open the installed guides. Public media access grants neither plugin permission nor access to unpublished scene assets. Updating previews is separate from changing source-repository visibility.
+
+## Maintainer checks
+
+Run from the plugin root. Set `IMG2_HARNESS_SOURCE` to a compatible img2 Git checkout; the [CI workflow](../.github/workflows/ci.yml) records the pinned revision. Install image dependencies in a project-local environment before the Python suite.
 
 ```sh
-python3 scripts/verify_install.py --harness-source /absolute/path/to/img2
+export IMG2_HARNESS_SOURCE=/absolute/path/to/img2
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-surfaces.txt
+python -m unittest discover -s tests -v
+npm ci --prefix runtime/viewer
+npm run build --prefix runtime/viewer
+VIEWER_ROOT="$PWD/runtime/viewer" node --test tests/viewer/*.test.mjs
+python scripts/verify_install.py --harness-source "$IMG2_HARNESS_SOURCE"
+python scripts/package_plugin.py
 ```
 
-This runs the official CLI with a temporary HOME/IMG2_HOME and three temporary host configurations; it does not alter real host settings or launchers. It checks install/add, registry identity, host links, doctor, sync, capability resolution and removal. Use a Git checkout of the harness, not a random Python directory.
+Native regressions need the separate authoring environment: set `IMG2_BLENDER_PYTHON` to that Python executable before the suite. Optional-environment skips are not passing native checks. Tests/builds do not replace changed-path rendering or browser inspection.
 
-## Release and catalog boundaries
+`verify_install.py` runs the official CLI with temporary HOME/IMG2_HOME and three isolated host configurations; it does not alter real host settings or launchers. It checks install/add, identity, links, doctor, sync, capability resolution and removal. The source packager writes a deterministic versioned ZIP and `SHA256SUMS` under `dist/`, including both license files and the small documentation gallery, not generated scene assets. Neither command publishes anything.
 
-Keep the repository private unless its owner separately authorizes a visibility change. Repository hosting and source ZIPs do not create an npm package, semver-tagged release or catalog entry. Request those operations separately; if an npm convenience installer is authorized, use the harness's official `create-img2-plugin-cli`, not a parallel custom installer.
-
-## npm release plan
-
-The GitHub repository stays private. npm is the intended installer channel, but this plugin does not yet include a generated npm installer or a published npm release. The source installation above remains the available path.
-
-### Choose the artifact and access model
-
-| Model | What npm distributes | What users need |
-|---|---|---|
-| Public installer, private GitHub implementation | Only the CLI, package metadata, and public README/license | Authorized HTTPS Git access to this repository |
-| Public payload package, private GitHub development | The plugin implementation itself | Public npm access; included code is no longer private |
-| Private payload package, private GitHub development | The plugin implementation, restricted by npm permissions | A paid npm user/organization account, npm authentication, and package read access |
-
-The recommended private-source model is the first row, using the official installer generator. A public installer does not grant access to a private Git repository. A private npm payload can avoid GitHub access for consumers, but package readers can still inspect downloaded code. These access controls are separate from the mixed license: proprietary portions require written authorization, while the listed Apache-2.0 exceptions and prior grants remain effective.
-
-See npm's [private package requirements](https://docs.npmjs.com/about-private-packages). Decide on payload visibility and licensing before authorizing the first publish.
-
-### Prepare an installer release
-
-1. **Confirm ownership and versions.** Choose an available npm package name owned by the maintainer or organization. Keep the plugin ID `interior` and skill name `img2-interior`. Select a reviewed plugin semver tag or full commit SHA; do not make an installer silently track an unreviewed branch.
-2. **Generate the official wrapper.** Use `create-img2-plugin-cli` from a reviewed img2 version with `--private-repo`, `--source img2threejs/img2interior`, an explicit `--ref`, and a reviewed full `--workflow-ref` SHA. The generator creates `cli/`, its tests/public README/license, a publish workflow, and `CLI_QUICKSTART.md`; none of these have been generated in this repository yet.
-   Review the generated wrapper's own license separately: the SDK template includes Apache-2.0 terms, which neither relicense the proprietary plugin payload nor permit removal of upstream notices. If distributing the mixed-license payload through npm, use `license: "SEE LICENSE IN LICENSE"` and include the root `LICENSE` and `licenses/Apache-2.0.txt`; do not label the whole payload Apache-2.0 or imply that every file is proprietary.
-3. **Review the tarball, not just the repository.** Run the generated CLI tests and `npm pack --dry-run` from `cli/`; inspect the actual packed tarball and test that artifact in an isolated consumer. Allow only the intended installer files and required package metadata/documentation. Do not include the plugin payload, credentials, workspace state, references, scene assets, or environments. Do not publish from the plugin root.
-4. **Authorize the first publish.** Use an npm account with package write access and 2FA. Follow the generated quickstart for the reviewed package name, explicit access setting, and first manual release. For this public-wrapper model, the access setting is `public`; publishing is a separate authorized operation, not part of installing or testing the skill.
-5. **Configure tokenless CI releases.** After the package exists, configure npm trusted publishing for this repository's exact caller workflow filename and the required publish permission. Use a supported GitHub-hosted runner with `id-token: write`; do not store a long-lived npm write token. Trusted publishing requires Node ≥22.14.0 and npm ≥11.5.1; the SDK's current release-setup instructions require npm ≥11.15 for its trust-management command.
-6. **Keep private-source provenance disabled.** Generate with `--private-repo` and retain `provenance=false`. npm trusted publishing supports authentication for this release flow, but npm provenance attestations are not supported for private source repositories, even when the npm installer is public.
-7. **Verify and document consumer access.** Test dry-run/install/doctor/removal in isolated host directories with authorized HTTPS Git credentials; also check an unauthorized consumer fails without a partial plugin registration. npm authentication alone is not GitHub authorization. Keep credentials out of package contents, command URLs, logs, and public examples.
-8. **Release immutable versions.** Plugin source tags use `vX.Y.Z`; generated installer release tags use `cli-vX.Y.Z`. Publish the exact tested tarball, record the installed source ref/integrity, and update public install instructions only after the package/version is available and verified. npm installation does not register a catalog entry.
-
-Before authorizing a proprietary release, review the scope with qualified counsel, including rights to earlier Apache-2.0 material, the Blender/Python API boundary, retained upstream notices, and written end-user/contributor agreements. This documentation does not certify a combined distribution's GPL compliance.
-
-Official references: [img2 wrapper contract](https://github.com/img2threejs/img2/blob/main/docs/WRITING_A_PLUGIN.md#10-plugin-cli-wrapper-optional), [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/), and [npm provenance requirements](https://docs.npmjs.com/generating-provenance-statements/).
+Official references: [private packages](https://docs.npmjs.com/creating-and-publishing-private-packages/), [package metadata](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/), [npm provenance](https://docs.npmjs.com/generating-provenance-statements/) and the [img2 harness](https://github.com/img2threejs/img2).

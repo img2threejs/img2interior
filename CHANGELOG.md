@@ -10,8 +10,9 @@
 
 ### Documentation
 
-- Rewrite the README around project scope, deliverables, installation, usage, contributor checks, support, security, and licensing. Keep detailed production instructions in the reference guides and clarify private-source access and publication status.
-- Document private GitHub hosting with planned npm installer distribution, distinguish installer-only and payload access models, and add the official wrapper release checklist with tarball review, trusted publishing, and private-source provenance limits.
+- Redesign the README as a package landing page with a complete, room-independent copy-and-use prompt, explicit setup/delivery expectations, and actual Oak / Linen living-room reference/native/browser previews. Label the original research study's relationship to the extracted recipe and its limits; no fresh scene-quality result is claimed.
+- Choose private npm payload distribution instead of a public wrapper requiring GitHub source access. Document restricted package metadata, account/access requirements, actual tarball and authenticated-consumer checks, and publication status; no npm package or catalog entry is published.
+- Include the small offline showcase gallery and both optimized previews in source archives. Use immutable public-media image URLs for the npm-facing README without exposing plugin code, scene files, full-resolution references or private production reports.
 
 ## 0.2.0 — 2026-10-18
 

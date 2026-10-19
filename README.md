@@ -1,61 +1,120 @@
 # img2 Interior
 
-**Turn interior reference images into editable Blender scenes and interactive Three.js viewers with a coding agent.**
+**One room image. An editable scene. A viewer you can explore.**
 
-img2 Interior is a plugin for the [img2 harness](https://github.com/img2threejs/img2). It gives an image-capable agent a reconstruction workflow, Blender/Python authoring tools, material and lighting utilities, and a Three.js viewer template. The agent interprets the reference, writes scene-specific code, and iterates on rendered results.
+An agent-operated interior reconstruction skill for **Claude Code, Codex and OpenCode**, powered by the [img2 harness](https://github.com/img2threejs/img2). Your agent reads the reference, authors a Blender scene, compares renders, and builds a Three.js viewer with native and portable exports.
 
-This is an agent-guided authoring toolkit, not a pretrained image-to-mesh model. A reference image is the starting point; visual fidelity still depends on scene authoring and review.
+Not a pretrained image-to-mesh model or a one-click fidelity guarantee. The workflow depends on scene-specific authoring and visual review.
 
-[Distribution](#distribution) · [Quickstart](#quickstart) · [Documentation](#documentation) · [Contributing](#contributing) · [License](#license)
+[Showcase](#showcase) · [Copy-and-use prompt](#copy-and-use-prompt) · [What you get](#what-you-get) · [Installation](#installation) · [Guides](#guides)
 
-## What it does
+> **Availability:** source version 0.3.0; **not yet published to npm**. Private npm payload distribution is planned for authorized users. The implementation stays private; only the approved showcase previews are public.
 
-- **Reconstructs editable rooms:** camera matching, room geometry, furniture, materials, and explicitly documented assumptions about unseen surfaces.
-- **Prepares materials and lighting:** Poly Haven asset acquisition, PBR image processing, lightmap baking, and environment probes.
-- **Builds a web viewer:** bounded camera navigation, material variants, optional rail-mounted curtain interaction, and download controls.
-- **Checks the handoff:** asset validation, dependency inventories, staged reviews, and independent reopening of native and portable files.
+## Showcase
 
-## Deliverables
+### Oak / Linen — Living Room
 
-| Output | Intended use | Important distinction |
+[![Side-by-side living-room comparison: an AI-generated reference on the left and the actual authored Blender render on the right.](https://raw.githubusercontent.com/img2threejs/img2interior-media/375e6af7ab526d7c0c10be91b0e72f2757391ec7/living-room-comparison.webp)](https://raw.githubusercontent.com/img2threejs/img2interior-media/375e6af7ab526d7c0c10be91b0e72f2757391ec7/living-room-comparison.webp)
+
+**Left: design reference. Right: reconstruction.** The reference is AI-generated, not a photograph or measured survey. The result is an actual render of the reopened Blender deliverable, not a retouched reference or an image plane standing in for a room. Open the image for the larger comparison.
+
+This is the **original Oak / Linen living-room research study** from which the packaged recipe and workflow lessons were extracted. It used scene-specific Blender/Python authoring and viewer integration, not a fresh run of the packaged 0.3.0 skill or the prompt below. Framing, proportions, fabric folds and lighting still differ from the reference; this is not a universal fidelity benchmark.
+
+<details>
+<summary><strong>See the browser viewer</strong> — camera views, wireframe, curtain controls, sofa finishes and downloads</summary>
+
+[![Actual browser screenshot of the living-room reconstruction, with source comparison, camera views, wireframe, curtain controls, sofa finishes and native/portable download links.](https://raw.githubusercontent.com/img2threejs/img2interior-media/375e6af7ab526d7c0c10be91b0e72f2757391ec7/living-room-viewer.webp)](https://raw.githubusercontent.com/img2threejs/img2interior-media/375e6af7ab526d7c0c10be91b0e72f2757391ec7/living-room-viewer.webp)
+
+A **static screenshot of the working Three.js project**, not a hosted live demo. Its controls are not interactive inside this README. Indirect lighting is baked; curtain movement does not produce fully dynamic global illumination. The portable GLB is a separate static product, not a copy of every browser behavior.
+
+</details>
+
+[Public preview gallery](https://github.com/img2threejs/img2interior-media) · [Bundled gallery and limitations](docs/showcase/README.md)
+
+## Copy-and-use prompt
+
+1. **Install and activate the skill** using the [installation instructions](#installation). Your agent must be able to read images, execute local commands and inspect a real browser.
+2. **Open your project**, outside the plugin checkout. Attach **one interior reference image** you have permission to use.
+3. **Copy the entire prompt below.** No room-specific placeholders, JSON specification or Python builder to prepare yourself; the agent authors those inputs.
+
+```text
+Use the installed img2-interior skill to reconstruct the attached room
+reference as an editable 3D interior and a working Three.js viewer in
+this project. Complete the workflow, not just a plan or a Blender file.
+
+Read the installed SKILL.md and its required reference guides first.
+Confirm that you can see the image and access the required agent tools,
+img2 harness, native authoring environment, image tools and WebGL browser.
+Set up missing dependencies only in project-local environments. If a
+required image, permission or compatible runtime is unavailable, report
+the exact blocker instead of inventing progress or substituting a room.
+
+Inspect the actual pixels. Identify the composition, camera, room shell,
+furniture, materials and lighting. Preserve the source and its provenance.
+Document estimated metre scale, dimensions, hidden surfaces and other
+single-view assumptions. Make reasonable labeled estimates; ask only
+when a material requirement cannot be decided safely.
+
+Author scene-specific, editable geometry and physically based materials.
+Do not reuse a bundled room as the answer, put the reference on furniture
+cards, or ask me to write the scene specification or builder. Use suitable
+permitted resources, keep their provenance, and preserve unrelated files.
+
+Render, open the images, compare against the reference and repair causes
+in camera/composition, geometry, then materials/lighting order. Inspect
+lateral and reverse views as well as the source view. Repeat the relevant
+reviews and regenerate affected bakes/exports after changes. A passing
+build, audit or score does not establish visual fidelity.
+
+Deliver all three products: a packed editable Blender master; a runtime
+GLB with every required sidecar and the working Three.js viewer; and a
+separate static portable GLB. Follow all eight review stages and the
+three blocking gates on current evidence without relaxing their checks.
+
+Launch and inspect the actual viewer. Exercise navigation, source view,
+wireframe, reset, applicable material/curtain controls, errors/retry and
+downloads at desktop and narrow widths. Reopen the native and portable
+files in independent consumer sessions and inspect actual renders.
+
+Hand off artifact locations, setup/launch/reproduction commands, observed
+verification evidence, resource notices and remaining visual/technical
+limits. Distinguish estimates, emulation and untested claims from proof.
+Do not claim exact recovery, universal photorealism or mobile performance.
+
+Do not use paid services, upload private images, publish packages, deploy
+publicly or change global configuration without separate authorization.
+```
+
+**Keep the same workspace when continuing.** For a revision, describe the visible difference to fix; the skill should resume its recorded workflow, preserve evidence and revisit affected stages rather than initialize a new project. The prompt standardizes execution, not the artistic quality of every result.
+
+## What you get
+
+| Product | Use it for | What travels with it |
 | --- | --- | --- |
-| Packed Blender master (`.blend`) | Continue editing geometry, materials, cameras, and lighting | Native authoring file, not a GLB |
-| Runtime GLB + sidecars + Three.js viewer | Explore the scene in a browser | Requires its declared lightmaps, probe, and other dependencies |
-| Portable GLB | Open the scene in another glTF-compatible tool | Static baked appearance; does not carry the viewer's interaction logic |
+| **Packed Blender master** (`.blend`) | Edit geometry, cameras, materials and lighting | Native scene with packed images; editable rather than flattened into a reference picture |
+| **Runtime scene + Three.js viewer** | Explore the authored room in a browser | Runtime GLB, declared lightmaps/probe/other sidecars, viewer code and applicable controls |
+| **Portable GLB** | Open a standalone model in another glTF consumer | Embedded static baked appearance; no browser cloth state or full native PBR relighting |
 
-Generated scenes, downloaded assets, renders, and local environments belong in the project workspace, not in the plugin checkout. They are not bundled with this repository.
+The handoff also includes the scene specification and Python builder, source/assumptions, resource notices, evidence, commands and known limitations. Generated rooms and full-resolution assets live in **your project**, not in the plugin package. The two small documentation previews above are not downloadable scene assets.
 
-## Distribution
+## Installation
 
-The GitHub repository remains **private**. npm is the planned installer distribution channel; this repository currently supports source-checkout and source-archive installation. An npm installer has not been added or published for this plugin.
-
-For private-source distribution, the recommended model is a **public, installer-only npm package** generated by the official img2 tooling. It ships the CLI and public package documentation, not the plugin implementation or scene assets. Installation fetches the implementation from this private repository, so users still need authorized GitHub read access.
-
-Repository privacy and npm package visibility are separate. Publishing the full skill in a public npm package would make the included code downloadable without GitHub access. Distributing the payload through a private npm package instead requires an eligible paid npm account and explicit package read access.
-
-Until an installer release is available, use the source installation below. Maintainers can follow the [npm release plan](reference/installation.md#npm-release-plan) for packaging, access choices, and release checks.
-
-## Quickstart
-
-### Requirements
+### Before you start
 
 | Component | Requirement |
 | --- | --- |
-| Agent host | Image-capable Claude Code, Codex, or OpenCode, configured through img2 |
+| Agent | Image-capable Claude Code, Codex or OpenCode, configured through img2; command execution and browser/image inspection tools |
 | Harness | img2 ≥0.4.0, core API 1 |
-| CLI and viewer | Git, npm, and Node.js 18, 20, or ≥22 |
-| Workspace and audit tools | Python ≥3.10 |
+| CLI / viewer | Git, npm and Node.js 18, 20 or ≥22; prefer a supported LTS release |
+| Audit / workspace tools | Python ≥3.10 |
 | Native authoring | Separate Python 3.11 environment with `bpy==4.3.0` and `numpy==1.26.4` |
-| Image tools | Separate environment using [`requirements-surfaces.txt`](requirements-surfaces.txt) |
-| Viewer inspection | A WebGL-capable browser |
+| Image tools / preview | Separate environment from `requirements-surfaces.txt`; a WebGL-capable browser |
 
-The harness does not install Blender/Python dependencies or build a viewer for you. Follow the [environment setup](reference/production-runbook.md#2-prepare-project-local-environments) before native authoring. Availability of compatible Blender wheels depends on the platform.
+The harness registers the skill; it does not install bpy or create the finished app. The agent follows the bundled [environment setup](reference/production-runbook.md#2-prepare-project-local-environments) and preflight before authoring. Compatible Blender wheels must exist for your platform. Obtain written authorization for the proprietary portions before installing or using them.
 
-### 1. Install from source
+### Available now: private source or supplied source archive
 
-Access to the private `img2threejs/img2interior` repository is required for this installation method. Keep the checkout in a persistent location. An extracted source archive can also be installed with `add --link` as described in the [installation guide](reference/installation.md).
-
-The commands below install the harness and register the skill with agent hosts. They change local harness/host configuration. If a compatible harness is already installed, skip the `install` command.
+For the Git method, you need read access to `img2threejs/img2interior` and authenticated Git credentials. These commands register the skill with local agent hosts, so they change local harness/host configuration. Keep the checkout in a persistent location. If you already have a compatible harness, skip its `install` command; if you already have the checkout, do not clone over it.
 
 ```sh
 git clone https://github.com/img2threejs/img2interior.git "$HOME/img2interior"
@@ -65,97 +124,46 @@ npx --yes @img2threejs/img2@0.4.0 doctor --json
 npx --yes @img2threejs/img2@0.4.0 sync --check
 ```
 
-The plugin ID is `interior`; the agent-facing skill is `img2-interior`. Keep the linked checkout in place and restart your agent session after installation. See [installation and removal](reference/installation.md) for maintenance commands and isolated installation verification.
+Restart the agent session, open your project and use the prompt above. The registry ID is **`interior`**; the agent-facing skill is **`img2-interior`**. An authorized source archive uses the same `add --link` flow after extraction. See [installation and removal](reference/installation.md) for archive paths, updates and cleanup.
 
-### 2. Start a reconstruction
+### Planned: private npm payload
 
-Create or open a project directory **outside the plugin checkout**. Start your agent there, attach a reference image, and give it an assignment such as:
+The intended npm package will contain the **skill implementation and bundled guides**, not a public installer that still fetches private GitHub source. Authorized consumers will need npm authentication and package read access, rather than GitHub source access. Package readers can inspect downloaded code; private distribution is access control, not code encryption.
 
-> Use img2-interior to reconstruct this reference as an editable room with a working Three.js viewer. Document estimated dimensions and unseen geometry. Compare renders against the reference and repair visible differences. Deliver the packed Blender master, runtime GLB with its dependencies, and a portable GLB; verify that each opens in its intended consumer.
+**No npm package name/version or install command is advertised yet.** The package, access policy and consumer installation must be verified before those instructions go live. Installing an arbitrary npm package also does not register a skill automatically; registration uses the official img2 harness. Maintainers: follow the [private npm release checklist](reference/installation.md#private-npm-release-checklist).
 
-The agent authors the scene specification and Python builder; you do not need to prepare those files yourself. For the full sequence, including resource acquisition, rendering, baking, browser checks, and export, see the [production runbook](reference/production-runbook.md).
+## Guides
 
-## Workflow
+Detailed guides are **bundled with the installed skill**; ask the agent to read them there. Their GitHub links require separate repository access. The public previews do not require that access.
 
-1. **Inspect the reference:** record provenance, visible anchors, camera estimates, and uncertainty.
-2. **Author and refine:** build scene-specific geometry and PBR materials; compare renders and revise the scene.
-3. **Bake and export:** produce lighting data and separate native, runtime, and portable outputs.
-4. **Integrate and verify:** exercise the viewer, reopen exported files, and check the delivery inventory.
-
-Review gates track stage order and current evidence. They do not measure aesthetic quality or replace visual inspection. Bundled examples are fixtures and source-specific recipes, not substitutes for reconstructing a new image.
-
-## Documentation
-
-| Guide | Contents |
+| Guide | Start here when… |
 | --- | --- |
-| [Installation and npm release plan](reference/installation.md) | Source installation, access models, release preparation, updates, and removal |
-| [Production runbook](reference/production-runbook.md) | Environment setup and end-to-end commands |
-| [Agent instructions](SKILL.md) | Skill entry point and stage-specific guidance |
-| [Scene contract](reference/scene-contract.md) | Scene specification and Python builder interface |
-| [Resources](reference/resources.md) · [Materials](reference/materials.md) | Asset acquisition, provenance, and PBR preparation |
-| [Lighting and export](reference/bake-export.md) | Calibration, baking, probes, and output formats |
-| [Viewer integration](reference/viewer-integration.md) | Three.js configuration and runtime behavior |
-| [Delivery](reference/delivery.md) | Product contracts and independent consumer checks |
-| [Verification record](VERIFICATION.md) · [Changelog](CHANGELOG.md) | Recorded checks, known limits, and changes |
+| [Installation and release](reference/installation.md) | Installing, updating, removing, or preparing the private npm payload |
+| [Production runbook](reference/production-runbook.md) · [Agent entry point](SKILL.md) | Running or resuming the complete reconstruction |
+| [Scene contract](reference/scene-contract.md) | Understanding editable scene inputs and the Blender builder |
+| [Resources](reference/resources.md) · [Materials](reference/materials.md) | Selecting assets, recording rights, and preparing PBR surfaces |
+| [Bake / export](reference/bake-export.md) · [Viewer](reference/viewer-integration.md) | Understanding the native/runtime/portable split |
+| [Delivery](reference/delivery.md) · [Verification record](VERIFICATION.md) | Checking consumer evidence and the scope of previous verification |
+| [Changelog](CHANGELOG.md) · [Maintainer checks](reference/installation.md#maintainer-checks) | Reviewing changes or validating a contribution |
 
-## Contributing
+## Limits to understand
 
-Bug reports are welcome through [GitHub issues](https://github.com/img2threejs/img2interior/issues), subject to repository access. Changes to proprietary portions require prior written authorization and agreed contribution terms; opening a pull request does not by itself grant a license or assign copyright. The Apache-2.0 exceptions retain their own contribution terms.
+- **One image is incomplete evidence.** Dimensions, hidden geometry, camera and material properties are estimates unless additional evidence is supplied.
+- **Visual review is required.** Contract gates catch stale or inconsistent deliverables; they cannot prove likeness, physical accuracy or photorealism. The showcase is not a universal benchmark.
+- **Lighting and exports differ.** Indirect bakes/probes are static. The portable product does not preserve every native material or browser interaction.
+- **Interaction is scoped.** Optional rail-mounted curtains use a position-based approximation, not a general cloth solver.
+- **Performance is scene-dependent.** Desktop or narrow-viewport captures do not certify physical phones, arbitrary hardware or production network performance.
 
-For a bug report, include the plugin and harness versions, operating system, relevant command, expected result, actual result, and a minimal reproduction. Remove credentials, private images, client assets, and identifying project paths before sharing logs or artifacts.
+## Support and contributions
 
-For a pull request, describe the behavior being changed and the checks you ran. Keep generated scenes, downloaded resources, dependency directories, and local environments out of commits. Add a regression test when fixing a consumer-visible defect; update affected documentation.
+Repository members can use [issues](https://github.com/img2threejs/img2interior/issues) for reproducible bugs. Include plugin/harness versions, OS, the command, expected/actual behavior and a minimal reproduction. Remove credentials, private references, client assets and identifying paths. Package access alone does not grant access to private GitHub issues; npm-only consumers should ask their package administrator to forward reports to the maintainer.
 
-### Local checks
+Report security-sensitive information privately to the repository owner; read the bundled [security policy](SECURITY.md) before executing authored Python or consuming external resources. Paid generation, uploads, public deployment and redistribution need their own authorization.
 
-Run these commands from the repository root. Set `IMG2_HARNESS_SOURCE` to the absolute path of a compatible [img2 source checkout](https://github.com/img2threejs/img2); the [CI workflow](.github/workflows/ci.yml) records the pinned SDK revision used in automation.
-
-```sh
-export IMG2_HARNESS_SOURCE=/absolute/path/to/img2
-python3 -m venv .venv
-. .venv/bin/activate
-python -m pip install -r requirements-surfaces.txt
-python -m unittest discover -s tests -v
-npm ci --prefix runtime/viewer
-npm run build --prefix runtime/viewer
-VIEWER_ROOT="$PWD/runtime/viewer" node --test tests/viewer/*.test.mjs
-python scripts/verify_install.py --harness-source "$IMG2_HARNESS_SOURCE"
-```
-
-Native regression tests additionally require the separate authoring environment. Set `IMG2_BLENDER_PYTHON` to its Python executable before running the Python suite. Missing optional environments produce skips; they are not passing native checks. Tests and builds do not replace a changed-path rendering or browser check.
-
-To build an installable source archive:
-
-```sh
-python3 scripts/package_plugin.py
-```
-
-The ZIP and `SHA256SUMS` are written to `dist/`. Building an archive does not publish a release, an npm package, or a catalog entry.
-
-## Limitations
-
-- **Single-view ambiguity:** dimensions, hidden geometry, and material properties are estimates unless supported by additional evidence.
-- **No fidelity guarantee:** machine checks validate declared contracts, not likeness, physical accuracy, or photorealism.
-- **Static lighting:** baked indirect lighting and probes do not provide fully dynamic global illumination. Portable exports preserve a static appearance, not the native material setup.
-- **Scoped interaction:** optional curtain simulation uses a position-based rail approximation; it is not a general cloth solver or arbitrary-rig system.
-- **Project-specific budgets:** output size and performance depend on the scene. Example reconstructions do not establish mobile-device performance or universal platform support.
-
-## Support and security
-
-Use [issues](https://github.com/img2threejs/img2interior/issues) for usage questions and reproducible bugs. For security-sensitive reports, contact the repository owner privately rather than posting secrets or private artifacts in an issue. Read [SECURITY.md](SECURITY.md) for trust boundaries before running authored Python or processing external assets.
-
-Paid generation, private uploads, purchases, deployment, and redistribution of reference images require separate authorization. Running the reconstruction workflow does not grant those permissions.
+Contributions to proprietary portions require prior written authorization and agreed terms. Keep generated projects, dependencies and private evidence out of commits; the approved documentation previews are the explicit exception. Describe the behavior changed and checks exercised. Apache-2.0 exceptions retain their own contribution terms; see [maintainer checks](reference/installation.md#maintainer-checks).
 
 ## License
 
-Version **0.3.0** uses a [mixed license](LICENSE), not a blanket open-source license:
+Version **0.3.0** uses a [mixed license](LICENSE), not a blanket open-source license. Original proprietary portions require prior written authorization; GitHub/npm access is not a usage license. The listed Blender authoring, recipe/example and native-tool exceptions retain [Apache-2.0](licenses/Apache-2.0.txt), and earlier Apache-2.0 grants are not revoked. Exact paths and terms are in `LICENSE`.
 
-- **Proprietary portions:** original plugin instructions, documentation, workflow/resource tools, and viewer code are **All rights reserved**, except for material covered by prior grants. Use, modification, or redistribution requires prior written authorization; this notice grants no general evaluation or commercial license.
-- **Apache-2.0 exceptions:** `authoring/`, `recipes/`, `examples/`, the native authoring/inspection CLIs, the native test module, and the authoring requirements remain under [Apache License 2.0](licenses/Apache-2.0.txt). The exact paths are listed in `LICENSE`.
-- **Earlier grants:** the change does not revoke Apache-2.0 rights already granted for earlier revisions, including `0.2.0` and earlier material reused later.
-
-GitHub/npm access does not replace permission to use proprietary portions. Obtain written authorization before following installation or usage instructions for those portions. For a future npm payload package, use `SEE LICENSE IN LICENSE` metadata and include both license files; an installer-only package has its own separately reviewed license.
-
-Apache-2.0 is compatible with GPLv3, not GPLv2-only. Blender/Python API integrations and combined distributions still require review against [Blender's licensing requirements](https://www.blender.org/about/license/#add-ons); this mixed-license notice is not a GPL exception or a legal compliance certification.
-
-Third-party dependencies, assets, and reference images retain their own licenses and permissions. The plugin does not claim ownership of user-created artwork merely because it processes it; copied plugin code and third-party assets retain their terms. Poly Haven's CC0 asset license is separate from its API terms; see the [resource guide](reference/resources.md).
+The mixed-license notice is not a Blender GPL exception or a legal compliance certification. Dependencies, assets and references retain their own rights. The plugin does not claim ownership of your artwork merely because it processes it; copied code and third-party content retain their terms. Public showcase images grant neither access to the implementation nor rights to unpublished scene assets.
