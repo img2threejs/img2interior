@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Reopen the authored master or import the portable GLB and render it as a consumer.
 
 Run with the project's bpy Python. Portable colors already contain the Neutral

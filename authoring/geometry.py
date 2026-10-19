@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
 """Reusable metric geometry/PBR/UV helpers, bound explicitly by Context.helpers.
 
 Coordinates are native Blender Z-up metres. Importing does not author a scene.

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
 """Independently reopen and render a packed master or portable GLB."""
 from argparse import ArgumentParser
 from pathlib import Path

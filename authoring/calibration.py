@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Evidence-only runtime fixture for EXR row orientation, rotated UV1 and PI transport.
 
 The Cycles reference evaluates the known Lambertian outgoing radiance albedo*field.

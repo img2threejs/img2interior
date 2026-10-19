@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Explicit hash-guarded Oak/Linen recipe, not a generic image interpreter."""
 
 import json

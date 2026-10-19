@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Real Blender export regressions. These measurements are not visual-quality scores."""
 from pathlib import Path
 from types import SimpleNamespace

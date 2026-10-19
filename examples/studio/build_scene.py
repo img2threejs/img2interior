@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Small authored studio: actual desk, stool, shelf, window and optional moving linen.
 
 Install this file and scene-spec.json in W. Supply an authorized source image at

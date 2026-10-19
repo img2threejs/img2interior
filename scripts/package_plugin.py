@@ -8,7 +8,7 @@ import re
 import sys
 import zipfile
 
-ROOT_FILES = ("plugin.json", "steps.json", "gates.json", "SKILL.md", "README.md", "LICENSE", "SECURITY.md", "CHANGELOG.md", "VERIFICATION.md", "requirements.txt", "requirements-authoring.txt", "requirements-surfaces.txt", ".gitignore")
+ROOT_FILES = ("plugin.json", "steps.json", "gates.json", "SKILL.md", "README.md", "LICENSE", "licenses/Apache-2.0.txt", "SECURITY.md", "CHANGELOG.md", "VERIFICATION.md", "requirements.txt", "requirements-authoring.txt", "requirements-surfaces.txt", ".gitignore")
 TREES = ("tools", "authoring", "resources_lib", "runtime", "recipes", "reference", "examples", "tests", "scripts", ".github")
 
 

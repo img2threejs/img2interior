@@ -100,7 +100,7 @@ Review gates track stage order and current evidence. They do not measure aesthet
 
 ## Contributing
 
-Bug reports, documentation improvements, and focused fixes are welcome through [GitHub issues](https://github.com/img2threejs/img2interior/issues) and pull requests, subject to repository access.
+Bug reports are welcome through [GitHub issues](https://github.com/img2threejs/img2interior/issues), subject to repository access. Changes to proprietary portions require prior written authorization and agreed contribution terms; opening a pull request does not by itself grant a license or assign copyright. The Apache-2.0 exceptions retain their own contribution terms.
 
 For a bug report, include the plugin and harness versions, operating system, relevant command, expected result, actual result, and a minimal reproduction. Remove credentials, private images, client assets, and identifying project paths before sharing logs or artifacts.
 
@@ -148,8 +148,14 @@ Paid generation, private uploads, purchases, deployment, and redistribution of r
 
 ## License
 
-The code in this repository is licensed under [Apache License 2.0](LICENSE).
+Version **0.3.0** uses a [mixed license](LICENSE), not a blanket open-source license:
 
-Private hosting and package access controls do not change this license or revoke the rights it grants for distributed code.
+- **Proprietary portions:** original plugin instructions, documentation, workflow/resource tools, and viewer code are **All rights reserved**, except for material covered by prior grants. Use, modification, or redistribution requires prior written authorization; this notice grants no general evaluation or commercial license.
+- **Apache-2.0 exceptions:** `authoring/`, `recipes/`, `examples/`, the native authoring/inspection CLIs, the native test module, and the authoring requirements remain under [Apache License 2.0](licenses/Apache-2.0.txt). The exact paths are listed in `LICENSE`.
+- **Earlier grants:** the change does not revoke Apache-2.0 rights already granted for earlier revisions, including `0.2.0` and earlier material reused later.
 
-Third-party assets and reference images remain subject to their own licenses and permissions. Poly Haven's CC0 asset license is separate from its API terms and attribution requirements; see the [resource guide](reference/resources.md).
+GitHub/npm access does not replace permission to use proprietary portions. Obtain written authorization before following installation or usage instructions for those portions. For a future npm payload package, use `SEE LICENSE IN LICENSE` metadata and include both license files; an installer-only package has its own separately reviewed license.
+
+Apache-2.0 is compatible with GPLv3, not GPLv2-only. Blender/Python API integrations and combined distributions still require review against [Blender's licensing requirements](https://www.blender.org/about/license/#add-ons); this mixed-license notice is not a GPL exception or a legal compliance certification.
+
+Third-party dependencies, assets, and reference images retain their own licenses and permissions. The plugin does not claim ownership of user-created artwork merely because it processes it; copied plugin code and third-party assets retain their terms. Poly Haven's CC0 asset license is separate from its API terms; see the [resource guide](reference/resources.md).

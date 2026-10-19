@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 — Unreleased
+
+### Licensing
+
+- Adopt a mixed license: proprietary terms apply to original plugin portions except for prior grants; Blender authoring, recipes/examples, native entrypoints/tests, and authoring requirements retain Apache-2.0 under the paths listed in `LICENSE`.
+- Preserve the complete Apache-2.0 text and copyright notice in `licenses/Apache-2.0.txt`, and include it in source archives. Retain third-party licensing and previously granted Apache-2.0 rights; do not claim blanket proprietary ownership or GPL compliance.
+- Align plugin/skill metadata at 0.3.0 to distinguish this licensing revision from the earlier Apache-2.0 source. No npm package, release tag, scene behavior, or visual-quality upgrade is introduced.
 
 ### Documentation
 

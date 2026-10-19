@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
 """Run explicit native production stages with a compatible bpy Python interpreter."""
 from argparse import ArgumentParser
 from pathlib import Path

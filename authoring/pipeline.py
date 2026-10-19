@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Workspace-bound native production using actual Blender/Cycles.
 
 Loaded privately by authoring.bound_module; no paths or scene data are accessed

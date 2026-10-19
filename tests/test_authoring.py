@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Stdlib context tests; opt-in real bpy regressions via IMG2_BLENDER_PYTHON."""
 import json
 import math

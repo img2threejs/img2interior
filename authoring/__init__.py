@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Explicit, workspace-bound Blender authoring. Importing this package is inert."""
 from dataclasses import dataclass
 from pathlib import Path
